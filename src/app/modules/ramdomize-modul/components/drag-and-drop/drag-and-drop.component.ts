@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { MatIconRegistry } from '@angular/material/icon';
+import { DomSanitizer } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-drag-and-drop',
@@ -6,11 +8,11 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./drag-and-drop.component.scss']
 })
 export class DragAndDropComponent {
-
-  constructor() { }
   error: string = '';
   dragAreaClass: string = '';
   draggedFiles: any;
+
+  constructor() { }
 
   saveFiles(files: FileList) {
 
@@ -20,6 +22,7 @@ export class DragAndDropComponent {
       console.log(files[0].size, files[0].name, files[0].type);
       this.draggedFiles = files;
       console.log(files);
+      //files[0] // readContent --> Service --> display Content in outputable
     }
   }
 

@@ -4,6 +4,7 @@ import { RandomizeInputComponent } from './randomize-input/randomize-input.compo
 import { DragAndDropComponent } from 'src/app/modules/ramdomize-modul/components/drag-and-drop/drag-and-drop.component';
 import { InputTableComponent } from './components/input-table/input-table.component';
 import { MatCardModule } from '@angular/material/card';
+import { MatIconModule } from '@angular/material/icon';
 
 
 
@@ -16,6 +17,7 @@ import { MatCardModule } from '@angular/material/card';
   imports: [
     CommonModule,
     MatCardModule,
+    MatIconModule,
 
   ]
 })

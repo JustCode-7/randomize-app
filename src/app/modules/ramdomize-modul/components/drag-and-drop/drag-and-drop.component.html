@@ -1,28 +1,24 @@
-<div class="container-sm mt-3">
-    <p>randomize-input works!</p>
-    <mat-card>
-        <mat-card-title>Drag and Drop File here</mat-card-title>
-        <div draggable="true" ngClass="{{dragAreaClass}}">
-            <div class="row">
-                <div class="col-md-12 text-center">
-                    <input type="file" #file [multiple]="false" (change)="onFileChange($event)" style="display:none" />
-                    <div class="dragged-files-wrapper" *ngIf="draggedFiles">
-                        <div class="file" *ngFor="let file of draggedFiles">
-                            {{file}}
-                        </div>
-                    </div>
+<div class="container">
+    <div class="d-flex flex-column bd-highlight mb-3">
+        <mat-card class="m-1">
+            <mat-card-subtitle (click)="file.click()">
+                click to open
+            </mat-card-subtitle>
+            <mat-card-title draggable="true" ngClass="{{dragAreaClass}}">Drag and Drop
+                <mat-icon><img src="/assets/icons/icons8-32.png" alt="image"></mat-icon>
+            </mat-card-title>
+            File here ...
+            <input type="file" #file [multiple]="false" (change)="onFileChange($event)" style="display:none" />
+            <div class="dragged-files-wrapper" *ngIf="draggedFiles">
+                <div class="file" *ngFor="let file of draggedFiles">
+                    {{file}}
                 </div>
             </div>
-        </div>
-        <div class="error" *ngIf="error">
-            Only one file at time allow
-        </div>
-        <mat-card-subtitle>
-            <a href="javascript:void(0)" (click)="file.click()">
-                or click to open
-            </a>
-        </mat-card-subtitle>
-    </mat-card>
+            <div class="error" *ngIf="error">
+                Only one file at time allow
+            </div>
 
+        </mat-card>
 
+    </div>
 </div>
