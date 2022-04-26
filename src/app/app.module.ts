@@ -9,9 +9,6 @@ import { environment } from '../environments/environment';
 import { RamdomizeModulModule } from './modules/ramdomize-modul/ramdomize-modul.module';
 import { MatMenuModule } from '@angular/material/menu';
 import { MatToolbarModule } from '@angular/material/toolbar';
-import { DragAndDropComponent } from './modules/ramdomize-modul/components/drag-and-drop/drag-and-drop.component';
-import { InputTableComponent } from './modules/ramdomize-modul/components/input-table/input-table.component';
-import { MatTable } from '@angular/material/table';
 
 @NgModule({
   declarations: [
@@ -30,7 +27,6 @@ import { MatTable } from '@angular/material/table';
     }),
     MatToolbarModule,
     MatMenuModule,
-    MatTable,
 
 
     RamdomizeModulModule,
