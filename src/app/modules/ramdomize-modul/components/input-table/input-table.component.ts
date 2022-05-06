@@ -1,4 +1,5 @@
-import { Component, ViewChild } from '@angular/core';
+import { Component } from '@angular/core';
+import { FormArray, FormBuilder, FormGroup } from '@angular/forms';
 
 @Component({
   selector: 'app-input-table',
@@ -6,6 +7,19 @@ import { Component, ViewChild } from '@angular/core';
   styleUrls: ['./input-table.component.scss']
 })
 export class InputTableComponent {
-  constructor() { }
+  value = 'Clear me';
+  names: string[] = ["Jack", "Jill", "Jane"];
+
+  constructor(private fb: FormBuilder
+  ) {
+  }
+
+  addName(name: string) {
+    this.names.push(name);
+
+  }
+  removeName(name: string) {
+    this.names.pop();
+  }
 
 }
