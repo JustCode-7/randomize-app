@@ -9,6 +9,7 @@ import { environment } from '../environments/environment';
 import { RamdomizeModulModule } from './modules/ramdomize-modul/ramdomize-modul.module';
 import { MatMenuModule } from '@angular/material/menu';
 import { MatToolbarModule } from '@angular/material/toolbar';
+import { RandomizedNameDialogComponent } from './modules/ramdomize-modul/randomized-name-dialog/randomized-name-dialog.component';
 
 @NgModule({
   declarations: [

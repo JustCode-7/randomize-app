@@ -8,6 +8,8 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { RandomizedNameDialogComponent } from './randomized-name-dialog/randomized-name-dialog.component';
+import { MatDialogModule } from '@angular/material/dialog';
 
 
 
@@ -16,6 +18,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     RandomizeInputComponent,
     DragAndDropComponent,
     InputTableComponent,
+    RandomizedNameDialogComponent,
   ],
   imports: [
     CommonModule,
@@ -26,6 +29,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     MatCardModule,
     FormsModule,
     ReactiveFormsModule,
+    MatDialogModule,
 
   ]
 })

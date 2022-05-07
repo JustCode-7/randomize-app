@@ -1,20 +1,17 @@
 <div class="container">
     <div class="d-flex flex-column bd-highlight mb-3">
-        <mat-form-field class="example-form-field" appearance="fill">
+        <mat-form-field class="example-form-field" appearance="fill" (click)="value=''">
             <mat-label>Clearable input</mat-label>
             <input matInput type="text" [(ngModel)]="value">
-            <button *ngIf="value" matSuffix mat-icon-button aria-label="Clear" (click)="value=''">
-                <mat-icon>close</mat-icon>
-            </button>
         </mat-form-field>
-
     </div>
-    <div class="d-flex justify-content-end">
+    <div class="d-flex justify-content-center">
         <button mat-raised-button color="primary" (click)="addName(value)">add</button>
-        <button mat-raised-button class="ms-2">remove</button>
+        <button mat-raised-button color="secondary" (click)="randomizeMitEntnahme()">randomize</button>
     </div>
+    <mat-label>Click to remove</mat-label>
     <div *ngFor="let name of names">
-        <mat-card class="m-1">
+        <mat-card (click)="removeName(name)" class="m-1">
             <mat-card-title>
                 {{name}}
             </mat-card-title>

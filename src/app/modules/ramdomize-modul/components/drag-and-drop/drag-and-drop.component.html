@@ -4,10 +4,9 @@
             <mat-card-subtitle (click)="file.click()">
                 click to open
             </mat-card-subtitle>
-            <mat-card-title draggable="true" ngClass="{{dragAreaClass}}">Drag and Drop
+            <mat-card-title draggable="true" ngClass="{{dragAreaClass}}">Drag and Drop txt-Files here
                 <mat-icon><img src="/assets/icons/icons8-32.png" alt="image"></mat-icon>
             </mat-card-title>
-            File here ...
             <input type="file" #file [multiple]="false" (change)="onFileChange($event)" style="display:none" />
             <div class="dragged-files-wrapper" *ngIf="draggedFiles">
                 <div class="file" *ngFor="let file of draggedFiles">
