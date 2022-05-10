@@ -10,6 +10,7 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { RandomizedNameDialogComponent } from './randomized-name-dialog/randomized-name-dialog.component';
 import { MatDialogModule } from '@angular/material/dialog';
+import { OutputTableComponent } from './components/output-table/output-table.component';
 
 
 
@@ -19,6 +20,7 @@ import { MatDialogModule } from '@angular/material/dialog';
     DragAndDropComponent,
     InputTableComponent,
     RandomizedNameDialogComponent,
+    OutputTableComponent,
   ],
   imports: [
     CommonModule,

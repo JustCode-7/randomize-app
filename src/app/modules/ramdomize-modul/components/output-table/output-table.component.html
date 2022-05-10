@@ -1,0 +1,17 @@
+<div class="container">
+    <div class="d-flex justify-center justify-content-center bd-highlight mt-3">
+        <div class="d-flex flex-column ms-4 me-4 mb-3">
+            <button class="mt-3" mat-raised-button color="secondary" (click)="randomizedService.randomize()">
+                randomize
+            </button>
+        </div>
+    </div>
+    <mat-label>Click to remove</mat-label>
+    <div *ngFor="let name of randomizedService._names">
+        <mat-card id="{{name}}" (click)="randomizedService.removeName(name)" class="m-1">
+            <mat-card-title>
+                {{name}}
+            </mat-card-title>
+        </mat-card>
+    </div>
+</div>
