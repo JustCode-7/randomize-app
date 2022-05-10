@@ -1,20 +1,21 @@
 <div class="container">
-    <div class="d-flex flex-column bd-highlight mb-3">
+    <div class="s-flex  mb-3">
         <mat-form-field (keydown.enter)="addName(value)" class="example-form-field" appearance="fill"
             (click)="value=''">
             <mat-label>Text Input</mat-label>
             <input matInput type="text" [(ngModel)]="value">
-            <div class="d-flex flex-row me-4 mb-3">
-                <button class="mt-3 me-4" mat-raised-button color="primary" (click)="addName(value)">
-                    add
-                </button>
-                <button class="mt-3 me-4" mat-raised-button color="secondary"
-                    (click)="randomizedService.reloadFromCache()">
-                    reload from cache
-                </button>
-                <button class="mt-3" mat-raised-button color="secondary" (click)="randomizedService.clearCache()">
-                    clear cache
-                </button>
-            </div>
         </mat-form-field>
+        <button class="justify-content-start ms-4 me-4" mat-raised-button color="accent" (click)="addName(value)">
+            add
+        </button>
+        <button class="justify-content-end ms-4  me-4" mat-raised-button color="secondary"
+            (click)="randomizedService.reloadFromCache()">
+            reload cache
+        </button>
+        <button class="justify-content-end " mat-raised-button color="secondary"
+            (click)="randomizedService.clearCache()">
+            clear cache
+        </button>
     </div>
+
+</div>

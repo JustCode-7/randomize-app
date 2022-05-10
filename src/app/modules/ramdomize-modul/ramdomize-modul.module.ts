@@ -6,6 +6,7 @@ import { InputTableComponent } from './components/input-table/input-table.compon
 import { MatCardModule } from '@angular/material/card';
 import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
+import { MatButtonModule } from '@angular/material/button';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { RandomizedNameDialogComponent } from './randomized-name-dialog/randomized-name-dialog.component';
@@ -32,6 +33,7 @@ import { OutputTableComponent } from './components/output-table/output-table.com
     FormsModule,
     ReactiveFormsModule,
     MatDialogModule,
+    MatButtonModule,
 
   ]
 })

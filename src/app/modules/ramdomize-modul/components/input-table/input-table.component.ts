@@ -1,6 +1,4 @@
-import { Component, OnInit } from '@angular/core';
-import { MatDialog } from '@angular/material/dialog';
-import { RandomizedNameDialogComponent } from '../../randomized-name-dialog/randomized-name-dialog.component';
+import { Component } from '@angular/core';
 import { RandomServiceService } from '../../services/random-service.service';
 
 @Component({
