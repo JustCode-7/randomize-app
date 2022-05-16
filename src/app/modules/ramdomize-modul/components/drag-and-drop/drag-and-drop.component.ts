@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import { Component, HostListener } from '@angular/core';
+import { RandomServiceService } from '../../services/random-service.service';
 
 @Component({
   selector: 'app-drag-and-drop',
@@ -6,54 +7,44 @@ import { Component } from '@angular/core';
   styleUrls: ['./drag-and-drop.component.scss']
 })
 export class DragAndDropComponent {
-  error: string = '';
-  dragAreaClass: string = '';
-  draggedFiles: any;
+  names: string[] = [];
+  randomizedService: RandomServiceService;
+  fileReader: FileReader;
 
-  constructor() { }
-
-  dropHandler(evt: Event | DragEvent) {
-    console.log('File(s) dropped');
-
-    // Prevent default behavior (Prevent file from being opened)
-    evt.preventDefault();
-    /* if (evt.dataTransfer.items) {
-       // Use DataTransferItemList interface to access the file(s)
-       for (var i = 0; i < evt.dataTransfer.items.length; i++) {
-         // If dropped items aren't files, reject them
-         if (evt.dataTransfer.items[i].kind === 'file') {
-           var file = evt.dataTransfer.items[i].getAsFile();
-           console.log('... file[' + i + '].name = ' + file.name);
-         }
-       }
-     }
-     */
+  constructor(randomizedService: RandomServiceService) {
+    this.randomizedService = randomizedService;
+    this.fileReader = new FileReader();
   }
 
-  saveFiles(files: FileList) {
+  @HostListener('dragover', ['$event']) onDragOver(evt: { preventDefault: () => void; stopPropagation: () => void; }) {
+    evt.preventDefault();
+    evt.stopPropagation();
+    // Dragover listener --> maybe color-change or something like this
+  }
 
-    if (files.length > 1) this.error = "Only one file at time allow";
-    else {
-      this.error = "";
-      // console.log(files[0].size, files[0].name, files[0].type);
-      this.draggedFiles = files;
+  @HostListener('drop', ['$event']) public ondrop(evt: { preventDefault: () => void; stopPropagation: () => void; dataTransfer: { files: any; }; }) {
+    evt.preventDefault();
+    evt.stopPropagation();
+    this.readFileInput(evt.dataTransfer.files);
+  }
 
-      //files[0] // readContent --> Service --> display Content in outputable
+  private readFileInput(files: any) {
+    if (files.length > 0) {
+      let file = files[0];
+      this.fileReader.onload = (e) => {
+        this.names = this.getFileContentAsStringArray();
+        this.notifyService();
+      };
+      this.fileReader.readAsText(file);
     }
   }
-
-  convertFileInput() {
-    var reader = new FileReader();
-
-    // Read file into memory as UTF-16
-    const filetext = reader.readAsText(this.draggedFiles[0], "UTF-8");
-    console.log(filetext)
-
+  private notifyService() {
+    //localStorage // add
+    this.randomizedService._names = this.names;
   }
 
-  onFileChange({ value }: any) {
-    value = 0;
-    this.convertFileInput()
+  private getFileContentAsStringArray() {
+    // other split-options txt-inputs
+    return this.fileReader.result?.valueOf().toString().split(",")!;
   }
-
 }

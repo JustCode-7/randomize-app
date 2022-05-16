@@ -8,17 +8,7 @@
                 txt-Files here
                 <mat-icon><img src="/assets/icons/icons8-32.png" alt="image"></mat-icon>
             </mat-card-title>
-            <input type="file" #file [multiple]="false" (ondrop)="dropHandler($event)" (change)="onFileChange($event)"
-                style="display:none" />
-            <!--  <div class="dragged-files-wrapper" *ngIf="draggedFiles">
-                <div class="file" *ngFor="let file of draggedFiles">
-                    {{file}}
-                </div>
-            </div>
-            <div class="error" *ngIf="error">
-                Only one file at time allow
-            </div>
-        -->
+            <input type="file" #file [multiple]="false" style="display:none" />
         </mat-card>
 
     </div>
