@@ -31,20 +31,22 @@ export class DragAndDropComponent {
   private readFileInput(files: any) {
     if (files.length > 0) {
       let file = files[0];
+      this.fileReader.readAsText(file);
       this.fileReader.onload = (e) => {
         this.names = this.getFileContentAsStringArray();
         this.notifyService();
       };
-      this.fileReader.readAsText(file);
+
     }
   }
   private notifyService() {
-    //localStorage // add
-    this.randomizedService._names = this.names;
+    this.randomizedService.clearNames();
+    this.randomizedService._names.push(... this.names);
+    this.randomizedService.setItemsToCache();
   }
 
   private getFileContentAsStringArray() {
-    // other split-options txt-inputs
-    return this.fileReader.result?.valueOf().toString().split(",")!;
+    let arr = this.fileReader.result?.valueOf().toString().split(/[\s,]+/)!;
+    return arr;
   }
 }

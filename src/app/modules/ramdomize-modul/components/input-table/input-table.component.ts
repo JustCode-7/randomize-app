@@ -18,7 +18,7 @@ export class InputTableComponent {
   addName(name: string) {
     if (name.length > 0) {
       this.randomizedService._names.push(name);
-      this.randomizedService.setItem();
+      this.randomizedService.setItemsToCache();
       this.value = "";
     }
   }

@@ -17,8 +17,8 @@ export class OutputTableComponent implements OnInit {
     this.randomizedService = randomizedService;
   }
   ngOnInit(): void {
-    if (this.randomizedService.getItem()?.length == 0) {
-      this.randomizedService.setItem();
+    if (this.randomizedService.getItemFromCache()?.length == 0) {
+      this.randomizedService.setItemsToCache();
     } else {
       this.randomizedService.reloadFromCache();
     }

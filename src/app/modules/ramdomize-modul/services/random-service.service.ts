@@ -9,28 +9,29 @@ export class RandomServiceService {
 
   _randomizedName: string = '';
   _names: string[] = ["Jack", "Jill", "Jane"];
+  jsonKey = "names";
 
   constructor(
     private dialog: MatDialog) { }
 
-  setNamesToJson() {
-    return JSON.stringify(this._names);
+  clearNames() {
+    this._names = [];
   }
 
-  getNamesToJson(json: any) {
-    return JSON.parse(json);
-  }
-  getJsonNamesList() {
-    const json = localStorage.getItem('names');
-    return this.getNamesToJson(json);
+  getParsedJSON() {
+    return JSON.parse(this.localStorageGetItemByKey()!);
   }
 
-  public setItem() {
-    localStorage.setItem('names', this.setNamesToJson());
+  public setItemsToCache() {
+    localStorage.setItem(this.jsonKey, JSON.stringify(this._names));
   }
 
-  public getItem() {
-    return localStorage.getItem('names')
+  public getItemFromCache() {
+    return this.localStorageGetItemByKey();
+  }
+
+  private localStorageGetItemByKey() {
+    return localStorage.getItem(this.jsonKey);
   }
 
   public removeItem(key: string) {
@@ -42,10 +43,9 @@ export class RandomServiceService {
   }
 
   reloadFromCache() {
-    if (this.getJsonNamesList() != null) {
-      console.log(this.getJsonNamesList());
+    if (this.getParsedJSON() != null) {
       this._names = [];
-      this._names.push(...this.getJsonNamesList());
+      this._names.push(...this.getParsedJSON());
     }
   }
 
