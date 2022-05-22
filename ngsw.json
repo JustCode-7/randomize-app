@@ -1,0 +1,87 @@
+{
+  "configVersion": 1,
+  "timestamp": 1653221122472,
+  "index": "/randomize-app/index.html",
+  "assetGroups": [
+    {
+      "name": "app",
+      "installMode": "prefetch",
+      "updateMode": "prefetch",
+      "cacheQueryOptions": {
+        "ignoreVary": true
+      },
+      "urls": [
+        "/randomize-app/favicon.ico",
+        "/randomize-app/index.html",
+        "/randomize-app/main.5bed6da9f0df3b9e.js",
+        "/randomize-app/manifest.webmanifest",
+        "/randomize-app/polyfills.d7725728a6426a3a.js",
+        "/randomize-app/runtime.9b793cbeb728d11f.js",
+        "/randomize-app/styles.7af9e1de04415b24.css"
+      ],
+      "patterns": []
+    },
+    {
+      "name": "assets",
+      "installMode": "lazy",
+      "updateMode": "prefetch",
+      "cacheQueryOptions": {
+        "ignoreVary": true
+      },
+      "urls": [
+        "/randomize-app/assets/icons/icon-128x128.png",
+        "/randomize-app/assets/icons/icon-144x144.png",
+        "/randomize-app/assets/icons/icon-152x152.png",
+        "/randomize-app/assets/icons/icon-192x192.png",
+        "/randomize-app/assets/icons/icon-384x384.png",
+        "/randomize-app/assets/icons/icon-512x512.png",
+        "/randomize-app/assets/icons/icon-72x72.png",
+        "/randomize-app/assets/icons/icon-96x96.png",
+        "/randomize-app/assets/icons/icons8-16.png",
+        "/randomize-app/assets/icons/icons8-32.png",
+        "/randomize-app/assets/icons/icons8-96.png"
+      ],
+      "patterns": []
+    }
+  ],
+  "dataGroups": [],
+  "hashTable": {
+    "/randomize-app/assets/icons/icon-128x128.png": "dae3b6ed49bdaf4327b92531d4b5b4a5d30c7532",
+    "/randomize-app/assets/icons/icon-144x144.png": "b0bd89982e08f9bd2b642928f5391915b74799a7",
+    "/randomize-app/assets/icons/icon-152x152.png": "7479a9477815dfd9668d60f8b3b2fba709b91310",
+    "/randomize-app/assets/icons/icon-192x192.png": "1abd80d431a237a853ce38147d8c63752f10933b",
+    "/randomize-app/assets/icons/icon-384x384.png": "329749cd6393768d3131ed6304c136b1ca05f2fd",
+    "/randomize-app/assets/icons/icon-512x512.png": "559d9c4318b45a1f2b10596bbb4c960fe521dbcc",
+    "/randomize-app/assets/icons/icon-72x72.png": "c457e56089a36952cd67156f9996bc4ce54a5ed9",
+    "/randomize-app/assets/icons/icon-96x96.png": "3914125a4b445bf111c5627875fc190f560daa41",
+    "/randomize-app/assets/icons/icons8-16.png": "0939bf0bdfc65f60bcf37239f21b549f132ef996",
+    "/randomize-app/assets/icons/icons8-32.png": "31b1387d840345f28c592c84985d93fe61c2d8c4",
+    "/randomize-app/assets/icons/icons8-96.png": "1c0a2de60cebba144603cd5a005fcab7f7e3ee99",
+    "/randomize-app/favicon.ico": "22f6a4a3bcaafafb0254e0f2fa4ceb89e505e8b2",
+    "/randomize-app/index.html": "502d45a9fc12d6e8669758df019f9db6d15d356b",
+    "/randomize-app/main.5bed6da9f0df3b9e.js": "04e5a63364a7937006ea0cdd3233c676a991e9f5",
+    "/randomize-app/manifest.webmanifest": "168ed84177904fe30b405a8a716f6594d2926f22",
+    "/randomize-app/polyfills.d7725728a6426a3a.js": "20c6a69330b279d08a5e622f17239535707e8151",
+    "/randomize-app/runtime.9b793cbeb728d11f.js": "113e3c12eee5ab15f3461a8fba6604896b70138c",
+    "/randomize-app/styles.7af9e1de04415b24.css": "dcec96debc5ae050d0d4dcedd8e7e0ad95221be2"
+  },
+  "navigationUrls": [
+    {
+      "positive": true,
+      "regex": "^\\/.*$"
+    },
+    {
+      "positive": false,
+      "regex": "^\\/(?:.+\\/)?[^/]*\\.[^/]*$"
+    },
+    {
+      "positive": false,
+      "regex": "^\\/(?:.+\\/)?[^/]*__[^/]*$"
+    },
+    {
+      "positive": false,
+      "regex": "^\\/(?:.+\\/)?[^/]*__[^/]*\\/.*$"
+    }
+  ],
+  "navigationRequestStrategy": "performance"
+}
