@@ -1,6 +1,6 @@
 {
   "configVersion": 1,
-  "timestamp": 1653221122472,
+  "timestamp": 1653228382474,
   "index": "/randomize-app/index.html",
   "assetGroups": [
     {
@@ -58,7 +58,7 @@
     "/randomize-app/assets/icons/icons8-32.png": "31b1387d840345f28c592c84985d93fe61c2d8c4",
     "/randomize-app/assets/icons/icons8-96.png": "1c0a2de60cebba144603cd5a005fcab7f7e3ee99",
     "/randomize-app/favicon.ico": "22f6a4a3bcaafafb0254e0f2fa4ceb89e505e8b2",
-    "/randomize-app/index.html": "502d45a9fc12d6e8669758df019f9db6d15d356b",
+    "/randomize-app/index.html": "f8af127258def7d934fdb8ffe1a464f77c28186f",
     "/randomize-app/main.5bed6da9f0df3b9e.js": "04e5a63364a7937006ea0cdd3233c676a991e9f5",
     "/randomize-app/manifest.webmanifest": "168ed84177904fe30b405a8a716f6594d2926f22",
     "/randomize-app/polyfills.d7725728a6426a3a.js": "20c6a69330b279d08a5e622f17239535707e8151",
