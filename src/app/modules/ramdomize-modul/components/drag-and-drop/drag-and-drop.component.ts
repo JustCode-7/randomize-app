@@ -49,4 +49,5 @@ export class DragAndDropComponent {
     let arr = this.fileReader.result?.valueOf().toString().split(/[\s,]+/)!;
     return arr;
   }
+
 }
