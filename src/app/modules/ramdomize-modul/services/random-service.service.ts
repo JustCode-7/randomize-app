@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { MatDialog } from '@angular/material/dialog';
+import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
 import { RandomizedNameDialogComponent } from '../randomized-name-dialog/randomized-name-dialog.component';
 
 @Injectable({
@@ -62,7 +62,11 @@ export class RandomServiceService {
     if (this._names.length > 0) {
       var shuffle = Math.floor(Math.random() * (this._names.length - 1));
       this._randomizedName = this._names[shuffle];
-      this.dialog.open(RandomizedNameDialogComponent);
+      const dialogConfig = new MatDialogConfig();
+      dialogConfig.position = {
+        top: '15%'
+      };
+      this.dialog.open(RandomizedNameDialogComponent, dialogConfig);
       this.removeName(this._names[shuffle]);
     }
   }
