@@ -8,12 +8,12 @@
         <button class="justify-content-start ms-4 me-4" mat-raised-button color="accent" (click)="addName(value)">
             add
         </button>
-        <button class="justify-content-end ms-4  me-4" mat-raised-button color="secondary"
-            (click)="randomizedService.reloadFromCache()">
+    </div>
+    <div class="d-flex justify-center justify-content-center bd-highlight mt-3">
+        <button class="me-4" mat-raised-button color="secondary" (click)="randomizedService.reloadFromCache()">
             reload cache
         </button>
-        <button class="justify-content-end " mat-raised-button color="secondary"
-            (click)="randomizedService.clearCache()">
+        <button mat-raised-button color="secondary" (click)="randomizedService.clearCache()">
             clear cache
         </button>
     </div>
