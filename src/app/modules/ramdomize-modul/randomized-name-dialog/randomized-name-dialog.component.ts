@@ -1,6 +1,4 @@
-import { ThisReceiver } from '@angular/compiler';
-import { Component, OnInit } from '@angular/core';
-import { MatDialogRef, MatDialogConfig } from '@angular/material/dialog';
+import { Component } from '@angular/core';
 import { RandomServiceService } from 'src/app/modules/ramdomize-modul/services/random-service.service';
 
 @Component({
