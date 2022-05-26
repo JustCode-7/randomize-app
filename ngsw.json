@@ -1,6 +1,6 @@
 {
   "configVersion": 1,
-  "timestamp": 1653569883061,
+  "timestamp": 1653571034844,
   "index": "/randomize-app/index.html",
   "assetGroups": [
     {
@@ -11,7 +11,6 @@
         "ignoreVary": true
       },
       "urls": [
-        "/randomize-app/favicon.ico",
         "/randomize-app/icons8-32.ico",
         "/randomize-app/index.html",
         "/randomize-app/main.6921709476eedecb.js",
@@ -31,14 +30,6 @@
         "ignoreVary": true
       },
       "urls": [
-        "/randomize-app/assets/icons/icon-128x128.png",
-        "/randomize-app/assets/icons/icon-144x144.png",
-        "/randomize-app/assets/icons/icon-152x152.png",
-        "/randomize-app/assets/icons/icon-192x192.png",
-        "/randomize-app/assets/icons/icon-384x384.png",
-        "/randomize-app/assets/icons/icon-512x512.png",
-        "/randomize-app/assets/icons/icon-72x72.png",
-        "/randomize-app/assets/icons/icon-96x96.png",
         "/randomize-app/assets/icons/icons8-16.png",
         "/randomize-app/assets/icons/icons8-32.png",
         "/randomize-app/assets/icons/icons8-32.svg",
@@ -51,21 +42,12 @@
   ],
   "dataGroups": [],
   "hashTable": {
-    "/randomize-app/assets/icons/icon-128x128.png": "dae3b6ed49bdaf4327b92531d4b5b4a5d30c7532",
-    "/randomize-app/assets/icons/icon-144x144.png": "b0bd89982e08f9bd2b642928f5391915b74799a7",
-    "/randomize-app/assets/icons/icon-152x152.png": "7479a9477815dfd9668d60f8b3b2fba709b91310",
-    "/randomize-app/assets/icons/icon-192x192.png": "1abd80d431a237a853ce38147d8c63752f10933b",
-    "/randomize-app/assets/icons/icon-384x384.png": "329749cd6393768d3131ed6304c136b1ca05f2fd",
-    "/randomize-app/assets/icons/icon-512x512.png": "559d9c4318b45a1f2b10596bbb4c960fe521dbcc",
-    "/randomize-app/assets/icons/icon-72x72.png": "c457e56089a36952cd67156f9996bc4ce54a5ed9",
-    "/randomize-app/assets/icons/icon-96x96.png": "3914125a4b445bf111c5627875fc190f560daa41",
     "/randomize-app/assets/icons/icons8-16.png": "0939bf0bdfc65f60bcf37239f21b549f132ef996",
     "/randomize-app/assets/icons/icons8-32.png": "31b1387d840345f28c592c84985d93fe61c2d8c4",
     "/randomize-app/assets/icons/icons8-32.svg": "ac00c4890298138d551e42ba4a74bf21187c6cea",
     "/randomize-app/assets/icons/icons8-96.png": "1c0a2de60cebba144603cd5a005fcab7f7e3ee99",
     "/randomize-app/assets/icons/random.png": "babe945f01d621a0e7f3fcbed40e1edee98a5315",
     "/randomize-app/assets/icons/random.svg": "583affae8b9b478e64a05b803914b7cc918b2141",
-    "/randomize-app/favicon.ico": "22f6a4a3bcaafafb0254e0f2fa4ceb89e505e8b2",
     "/randomize-app/icons8-32.ico": "ec4d231840984ee454272dcf8e0c3468d8d9fc1c",
     "/randomize-app/index.html": "94f28359bef9451b709909796a0c2877144a2eaf",
     "/randomize-app/main.6921709476eedecb.js": "e5508702d2033c415773d4d909571f7924509961",
