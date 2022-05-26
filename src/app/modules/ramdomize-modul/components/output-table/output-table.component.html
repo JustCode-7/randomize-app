@@ -6,12 +6,24 @@
             </button>
         </div>
     </div>
-    <mat-label>Click to remove</mat-label>
-    <div *ngFor="let name of randomizedService._names">
-        <mat-card id="{{name}}" (click)="randomizedService.removeName(name)" class="m-1">
-            <mat-card-title>
-                {{name}}
-            </mat-card-title>
-        </mat-card>
-    </div>
+    <mat-accordion>
+        <mat-expansion-panel>
+            <mat-expansion-panel-header>
+                <mat-panel-title>
+                    contentlist
+                </mat-panel-title>
+                <mat-panel-description>
+                    extend to manage listcontents
+                </mat-panel-description>
+            </mat-expansion-panel-header>
+            <mat-label>Click to remove</mat-label>
+            <div class="d-flex justify-center flex-column" *ngFor="let name of randomizedService._names">
+                <mat-card id="{{name}}" (click)="randomizedService.removeName(name)" class="m-1">
+                    <mat-card-title>
+                        {{name}}
+                    </mat-card-title>
+                </mat-card>
+            </div>
+        </mat-expansion-panel>
+    </mat-accordion>
 </div>
