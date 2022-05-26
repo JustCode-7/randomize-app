@@ -10,9 +10,14 @@ export class RandomServiceService {
   _randomizedName: string = '';
   _names: string[] = ["Jack", "Jill", "Jane"];
   jsonKey = "names";
+  dialogConfig = new MatDialogConfig()
 
   constructor(
-    private dialog: MatDialog) { }
+    private dialog: MatDialog) {
+    this.dialogConfig.position = {
+      top: '15%'
+    };
+  }
 
   clearNames() {
     this._names = [];
@@ -62,11 +67,7 @@ export class RandomServiceService {
     if (this._names.length > 0) {
       var shuffle = Math.floor(Math.random() * (this._names.length - 1));
       this._randomizedName = this._names[shuffle];
-      const dialogConfig = new MatDialogConfig();
-      dialogConfig.position = {
-        top: '15%'
-      };
-      this.dialog.open(RandomizedNameDialogComponent, dialogConfig);
+      this.dialog.open(RandomizedNameDialogComponent, this.dialogConfig);
       this.removeName(this._names[shuffle]);
     }
   }
