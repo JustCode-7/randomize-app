@@ -1,6 +1,7 @@
 import { Component, HostListener } from '@angular/core';
 import { RandomServiceService } from '../../services/random-service.service';
 
+
 @Component({
   selector: 'app-drag-and-drop',
   templateUrl: './drag-and-drop.component.html',

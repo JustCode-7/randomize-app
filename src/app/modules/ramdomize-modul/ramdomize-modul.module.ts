@@ -12,6 +12,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { RandomizedNameDialogComponent } from './randomized-name-dialog/randomized-name-dialog.component';
 import { MatDialogModule } from '@angular/material/dialog';
 import { OutputTableComponent } from './components/output-table/output-table.component';
+import { MatExpansionModule } from '@angular/material/expansion';
 
 
 
@@ -34,6 +35,7 @@ import { OutputTableComponent } from './components/output-table/output-table.com
     ReactiveFormsModule,
     MatDialogModule,
     MatButtonModule,
+    MatExpansionModule,
 
   ]
 })
