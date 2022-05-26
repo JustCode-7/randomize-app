@@ -65,7 +65,7 @@ export class RandomServiceService {
 
   randomize() {
     if (this._names.length > 0) {
-      var shuffle = Math.floor(Math.random() * (this._names.length - 1));
+      var shuffle = Math.floor(Math.random() * (this._names.length));
       this._randomizedName = this._names[shuffle];
       this.dialog.open(RandomizedNameDialogComponent, this.dialogConfig);
       this.removeName(this._names[shuffle]);
