@@ -27,8 +27,8 @@
             "tsConfig": "tsconfig.app.json",
             "inlineStyleLanguage": "scss",
             "assets": [
-              "src/icons8-32.ico",
               "src/random.ico",
+              "src/icons8-32.ico",
               "src/assets",
               "src/manifest.webmanifest"
             ],
