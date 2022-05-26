@@ -1,6 +1,6 @@
 {
   "configVersion": 1,
-  "timestamp": 1653572606113,
+  "timestamp": 1653573603938,
   "index": "/randomize-app/index.html",
   "assetGroups": [
     {
@@ -11,9 +11,8 @@
         "ignoreVary": true
       },
       "urls": [
-        "/randomize-app/icons8-32.ico",
         "/randomize-app/index.html",
-        "/randomize-app/main.e4d18c480aa5c2d8.js",
+        "/randomize-app/main.36449a3674b25a2e.js",
         "/randomize-app/manifest.webmanifest",
         "/randomize-app/polyfills.d7725728a6426a3a.js",
         "/randomize-app/random.ico",
@@ -31,6 +30,7 @@
       },
       "urls": [
         "/randomize-app/assets/icons/icons8-16.png",
+        "/randomize-app/assets/icons/icons8-32.ico",
         "/randomize-app/assets/icons/icons8-32.png",
         "/randomize-app/assets/icons/icons8-32.svg",
         "/randomize-app/assets/icons/icons8-96.png",
@@ -43,14 +43,14 @@
   "dataGroups": [],
   "hashTable": {
     "/randomize-app/assets/icons/icons8-16.png": "0939bf0bdfc65f60bcf37239f21b549f132ef996",
+    "/randomize-app/assets/icons/icons8-32.ico": "ec4d231840984ee454272dcf8e0c3468d8d9fc1c",
     "/randomize-app/assets/icons/icons8-32.png": "31b1387d840345f28c592c84985d93fe61c2d8c4",
     "/randomize-app/assets/icons/icons8-32.svg": "ac00c4890298138d551e42ba4a74bf21187c6cea",
     "/randomize-app/assets/icons/icons8-96.png": "1c0a2de60cebba144603cd5a005fcab7f7e3ee99",
     "/randomize-app/assets/icons/random.png": "babe945f01d621a0e7f3fcbed40e1edee98a5315",
     "/randomize-app/assets/icons/random.svg": "583affae8b9b478e64a05b803914b7cc918b2141",
-    "/randomize-app/icons8-32.ico": "ec4d231840984ee454272dcf8e0c3468d8d9fc1c",
-    "/randomize-app/index.html": "f30ef1bf68b396cd8c45a83951f4b2fac45c111c",
-    "/randomize-app/main.e4d18c480aa5c2d8.js": "c3090b6fc65d38bce02005ef9bad3534b9ecb7dc",
+    "/randomize-app/index.html": "4b05cea478c6e6aa1c3a12c3fc9827dac2f25d55",
+    "/randomize-app/main.36449a3674b25a2e.js": "9b8a42795cc6b4ded4e5e732632b414e727ba6f6",
     "/randomize-app/manifest.webmanifest": "572d7b43099e11093cd23ba1adbb57830eaf6734",
     "/randomize-app/polyfills.d7725728a6426a3a.js": "20c6a69330b279d08a5e622f17239535707e8151",
     "/randomize-app/random.ico": "d01f52138b06bb612e9bb1d496cf60b55be03627",
