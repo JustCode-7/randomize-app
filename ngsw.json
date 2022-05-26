@@ -1,6 +1,6 @@
 {
   "configVersion": 1,
-  "timestamp": 1653571034844,
+  "timestamp": 1653571511838,
   "index": "/randomize-app/index.html",
   "assetGroups": [
     {
@@ -13,7 +13,7 @@
       "urls": [
         "/randomize-app/icons8-32.ico",
         "/randomize-app/index.html",
-        "/randomize-app/main.6921709476eedecb.js",
+        "/randomize-app/main.e4d18c480aa5c2d8.js",
         "/randomize-app/manifest.webmanifest",
         "/randomize-app/polyfills.d7725728a6426a3a.js",
         "/randomize-app/random.ico",
@@ -49,8 +49,8 @@
     "/randomize-app/assets/icons/random.png": "babe945f01d621a0e7f3fcbed40e1edee98a5315",
     "/randomize-app/assets/icons/random.svg": "583affae8b9b478e64a05b803914b7cc918b2141",
     "/randomize-app/icons8-32.ico": "ec4d231840984ee454272dcf8e0c3468d8d9fc1c",
-    "/randomize-app/index.html": "94f28359bef9451b709909796a0c2877144a2eaf",
-    "/randomize-app/main.6921709476eedecb.js": "e5508702d2033c415773d4d909571f7924509961",
+    "/randomize-app/index.html": "f30ef1bf68b396cd8c45a83951f4b2fac45c111c",
+    "/randomize-app/main.e4d18c480aa5c2d8.js": "c3090b6fc65d38bce02005ef9bad3534b9ecb7dc",
     "/randomize-app/manifest.webmanifest": "49e3815fcd57343b4a6fe36f52700a75fd0f56ab",
     "/randomize-app/polyfills.d7725728a6426a3a.js": "20c6a69330b279d08a5e622f17239535707e8151",
     "/randomize-app/random.ico": "d01f52138b06bb612e9bb1d496cf60b55be03627",
