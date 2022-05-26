@@ -27,7 +27,6 @@
             "tsConfig": "tsconfig.app.json",
             "inlineStyleLanguage": "scss",
             "assets": [
-              "src/favicon.ico",
               "src/icons8-32.ico",
               "src/random.ico",
               "src/assets",
@@ -101,7 +100,6 @@
             "karmaConfig": "karma.conf.js",
             "inlineStyleLanguage": "scss",
             "assets": [
-              "src/favicon.ico",
               "src/icons8-32.ico",
               "src/random.ico",
               "src/assets",
