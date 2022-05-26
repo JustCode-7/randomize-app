@@ -10,7 +10,7 @@ export class RandomServiceService {
   _randomizedName: string = '';
   _names: string[] = ["Jack", "Jill", "Jane"];
   jsonKey = "names";
-  dialogConfig = new MatDialogConfig()
+  dialogConfig = new MatDialogConfig();
 
   constructor(
     private dialog: MatDialog) {
