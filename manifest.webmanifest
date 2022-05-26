@@ -8,6 +8,12 @@
   "start_url": "./",
   "icons": [
     {
+      "src": "assets/icons/random.png",
+      "sizes": "32x32",
+      "type": "image/png",
+      "purpose": "maskable any"
+    },
+    {
       "src": "assets/icons/icons8-96.png",
       "sizes": "96x96",
       "type": "image/png",
@@ -22,12 +28,6 @@
     {
       "src": "assets/icons/icons8-16.png",
       "sizes": "16x16",
-      "type": "image/png",
-      "purpose": "maskable any"
-    },
-    {
-      "src": "assets/icons/random.png",
-      "sizes": "32x32",
       "type": "image/png",
       "purpose": "maskable any"
     }
