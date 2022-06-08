@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { MatDialogRef } from '@angular/material/dialog';
-import { RandomServiceService } from '../../services/random-service.service';
+import { RandomServiceService } from '../services/random-service.service';
 
 @Component({
   selector: 'app-import-dialog',

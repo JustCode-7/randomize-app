@@ -5,7 +5,7 @@ import { RandomServiceService } from 'src/app/modules/ramdomize-modul/services/r
   selector: 'app-randomized-name-dialog',
   template: `
     <div>
-      <h3>randomized:</h3><h1 color = yellow> {{ randomizedService._randomizedName }}</h1>
+      <h3>randomized:</h3><h1 style="color:yellow;"> {{ randomizedService._randomizedName }}</h1>
     </div>
   `,
   styles: []

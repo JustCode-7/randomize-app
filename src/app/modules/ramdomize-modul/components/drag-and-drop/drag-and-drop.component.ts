@@ -1,6 +1,6 @@
 import { Component, HostListener } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
-import { ImportDialogTemplateComponent } from '../../dialog-templates/import-dialog-template/import-dialog-template.component';
+import { ImportDialogTemplateComponent } from '../../dialog-templates/import-dialog-template.component';
 import { RandomServiceService } from '../../services/random-service.service';
 
 
