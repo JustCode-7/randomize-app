@@ -13,6 +13,7 @@ import { RandomizedNameDialogComponent } from './randomized-name-dialog/randomiz
 import { MatDialogModule } from '@angular/material/dialog';
 import { OutputTableComponent } from './components/output-table/output-table.component';
 import { MatExpansionModule } from '@angular/material/expansion';
+import { ImportDialogTemplateComponent } from './dialog-templates/import-dialog-template/import-dialog-template.component';
 
 
 
@@ -23,6 +24,7 @@ import { MatExpansionModule } from '@angular/material/expansion';
     InputTableComponent,
     RandomizedNameDialogComponent,
     OutputTableComponent,
+    ImportDialogTemplateComponent,
   ],
   imports: [
     CommonModule,

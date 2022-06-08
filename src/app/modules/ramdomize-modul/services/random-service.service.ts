@@ -11,6 +11,7 @@ export class RandomServiceService {
   _names: string[] = ["Jack", "Jill", "Jane"];
   jsonKey = "names";
   dialogConfig = new MatDialogConfig();
+  _style: string = '';
 
   constructor(
     private dialog: MatDialog) {
@@ -70,5 +71,19 @@ export class RandomServiceService {
       this.dialog.open(RandomizedNameDialogComponent, this.dialogConfig);
       this.removeName(this._names[shuffle]);
     }
+  }
+
+  setImportStyle(style: any) {
+    if (style == "line") {
+      this._style = "line";
+    }
+    if (style == "csv") {
+      this._style = "csv";
+    }
+    if (style == "wild") {
+      this._style = "wild";
+    }
+
+
   }
 }
