@@ -15,7 +15,8 @@ export class DragAndDropComponent {
   fileReader: FileReader;
   dialog: any;
 
-  constructor(randomizedService: RandomServiceService, dialog: MatDialog) {
+  constructor(randomizedService: RandomServiceService,
+    dialog: MatDialog) {
     this.randomizedService = randomizedService;
     this.fileReader = new FileReader();
     this.dialog = dialog;
@@ -66,6 +67,15 @@ export class DragAndDropComponent {
       arr = this.fileReader.result?.valueOf().toString().split(/[\s,]+/)!;
     }
     return arr;
+  }
+
+  openExplorerForfileImport(file: HTMLInputElement) {
+    file.click();
+    file.onchange = () => {
+      const selectedFile = file.files;
+      this.readFileInput(selectedFile);
+    }
+
   }
 
 }
