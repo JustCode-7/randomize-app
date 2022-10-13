@@ -1,0 +1,18 @@
+<div class="container">
+  <div class="d-flex flex-column bd-highlight mb-3">
+    <div class="mx-auto d-flex justify-content-center d-flex-row">
+      <app-generate-qr-code>
+      </app-generate-qr-code>
+    </div>
+    <div class="d-flex justify-content-center mt-3">
+      <button (click)="qrcodeService.scanQRCodeWithCam()" color="primary" mat-raised-button>
+        scan QR-code with camera
+      </button>
+    </div>
+    <div class="d-flex justify-content-center mt-3">
+      <button (click)="qrcodeService.getQRCodeFromClipboard()" color="primary" mat-raised-button>
+        get QR-code from clipboard
+      </button>
+    </div>
+  </div>
+</div>

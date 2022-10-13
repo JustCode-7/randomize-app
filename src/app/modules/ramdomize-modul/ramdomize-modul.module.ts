@@ -1,20 +1,19 @@
-import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
-import { RandomizeInputComponent } from './randomize-input/randomize-input.component';
-import { DragAndDropComponent } from 'src/app/modules/ramdomize-modul/components/drag-and-drop/drag-and-drop.component';
-import { InputTableComponent } from './components/input-table/input-table.component';
-import { MatCardModule } from '@angular/material/card';
-import { MatIconModule } from '@angular/material/icon';
-import { MatInputModule } from '@angular/material/input';
-import { MatButtonModule } from '@angular/material/button';
-import { MatFormFieldModule } from '@angular/material/form-field';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { RandomizedNameDialogComponent } from './dialog-templates/randomized-name-dialog.component';
-import { MatDialogModule } from '@angular/material/dialog';
-import { OutputTableComponent } from './components/output-table/output-table.component';
-import { MatExpansionModule } from '@angular/material/expansion';
-import { ImportDialogTemplateComponent } from './dialog-templates/import-dialog-template.component';
-
+import {NgModule} from '@angular/core';
+import {CommonModule} from '@angular/common';
+import {RandomizeInputComponent} from './randomize-input/randomize-input.component';
+import {DragAndDropComponent} from 'src/app/modules/ramdomize-modul/components/drag-and-drop/drag-and-drop.component';
+import {InputTableComponent} from './components/input-table/input-table.component';
+import {MatCardModule} from '@angular/material/card';
+import {MatIconModule} from '@angular/material/icon';
+import {MatInputModule} from '@angular/material/input';
+import {MatButtonModule} from '@angular/material/button';
+import {MatFormFieldModule} from '@angular/material/form-field';
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
+import {RandomizedNameDialogComponent} from './dialog-templates/randomized-name-dialog.component';
+import {MatDialogModule} from '@angular/material/dialog';
+import {OutputTableComponent} from './components/output-table/output-table.component';
+import {MatExpansionModule} from '@angular/material/expansion';
+import {ImportDialogTemplateComponent} from './dialog-templates/import-dialog-template.component';
 
 
 @NgModule({
@@ -25,6 +24,9 @@ import { ImportDialogTemplateComponent } from './dialog-templates/import-dialog-
     RandomizedNameDialogComponent,
     OutputTableComponent,
     ImportDialogTemplateComponent,
+  ],
+  exports: [
+    RandomizeInputComponent
   ],
   imports: [
     CommonModule,
@@ -41,4 +43,5 @@ import { ImportDialogTemplateComponent } from './dialog-templates/import-dialog-
 
   ]
 })
-export class RamdomizeModulModule { }
+export class RamdomizeModulModule {
+}
