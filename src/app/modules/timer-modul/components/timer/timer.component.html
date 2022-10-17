@@ -1,52 +1,39 @@
 <div class="p-3">
-  <div class="d-flex justify-content-center my-2 mx-2 ">
-    <mat-form-field appearance="fill">
-      <mat-label>starttime</mat-label>
-      <input [errorStateMatcher]="matcher" [formControl]="timeFromControl" [valueAsDate]="inputstarttime" matInput
-             placeholder="09:30"
-             type="time"
-             value=09:30>
-      <mat-error *ngIf="timeFromControl.hasError('required')">
-        starttime is <strong>required</strong>
-      </mat-error>
-    </mat-form-field>
-  </div>
-  <div class="d-flex justify-content-center my-2 mx-2 ">
-    <mat-form-field appearance="fill" class="example-full-width">
-      <mat-label>worktime</mat-label>
-      <input [errorStateMatcher]="matcher" [formControl]="timeFromControl" [valueAsDate]="inputworktime" matInput
-             placeholder="07:48"
-             type="time"
-             value=inputworktime>
-      <mat-error *ngIf="timeFromControl.hasError('required')">
-        worktime is <strong>required</strong>
-      </mat-error>
-    </mat-form-field>
-  </div>
-  <div class="d-flex justify-content-center my-2 mx-2 ">
-    <mat-form-field appearance="fill" class="example-full-width">
-      <mat-label>pause</mat-label>
-      <input [errorStateMatcher]="matcher" [formControl]="timeFromControl" [valueAsDate]="inputpause" matInput
-             placeholder="00:30"
-             type="time"
-             value=07:48>
-      <mat-error *ngIf="timeFromControl.hasError('required')">
-        pause is <strong>required</strong>
-      </mat-error>
-      <mat-hint>all values are required!</mat-hint>
-    </mat-form-field>
-  </div>
-  <div class="d-flex justify-content-center p-3 my-2 mx-2 ">
-    <button (click)="calculate(inputstarttime, inputworktime, inputpause)"
+  <form (ngSubmit)="onFormSubmit()"
+        [formGroup]="timeForm"
+        class="form-horizontal">
+    <div *ngFor="let form of forms; let i=index" class="d-flex justify-content-center my-2 mx-2 ">
+      <mat-form-field appearance="fill">
+        <mat-label>{{form}}</mat-label>
+        <input
+          formControlName="{{form}}"
+          matInput
+          type="time">
+      </mat-form-field>
+    </div>
+  </form>
+  <div class="d-flex flex-column justify-content-center p-3 my-2 mx-2 ">
+    <mat-hint *ngIf="extraPause===true" [ngStyle]="{'font-size': 70+'%','color': '#880808'}"
+              class="justify-content-center">
+      *{{pausenzeit}} <br>pause with extra pause
+    </mat-hint>
+    <button (click)="onFormSubmit()"
             class="my-2 mx-2" color="primary"
             mat-raised-button>
       calculate
     </button>
   </div>
   <div class="d-flex justify-content-center p-3 my-2 mx-2 mat-card">
-    <mat-card>
-      <mat-card-title>Feierabend</mat-card-title>
-      <mat-card-content>pausenzeit</mat-card-content>
+    <mat-card *ngIf="feierabend!=='feierabend'">
+      <mat-card-title>Feierabend:<br> {{feierabend}}</mat-card-title>
+      <mat-card-content>
+        <mat-progress-spinner *ngIf="value!==0"
+                              [color]="color"
+                              [mode]="mode"
+                              [value]="value"
+        >
+        </mat-progress-spinner>
+      </mat-card-content>
     </mat-card>
   </div>
 </div>
