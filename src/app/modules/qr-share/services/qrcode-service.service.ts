@@ -25,8 +25,9 @@ export class QrcodeServiceService {
   // dont work in firefox
   // choose the right npm - package
   async getClipboardContents() {
+    alert("work in progress");
     //const clipboardItems = await navigator.clipboard.read();
-    let text = navigator.clipboard.read();
+    // let text = navigator.clipboard.read();
 
     /*  for (const clipboardItem of clipboardItems) {
 
@@ -36,15 +37,16 @@ export class QrcodeServiceService {
         }
       }
       */
-    console.log(text)
+    // console.log(text)
   }
 
 
   scanQRCodeWithCam() {
-    this.getCameraAcc();
-    if ('mediaDevices' in navigator && 'getUserMedia' in navigator.mediaDevices) {
-      console.log("Let's get this party started")
-    }
+    alert("work in progress");
+    // this.getCameraAcc();
+    // if ('mediaDevices' in navigator && 'getUserMedia' in navigator.mediaDevices) {
+    //   console.log("Let's get this party started")
+    // }
   }
 
   getCameraAcc() {
