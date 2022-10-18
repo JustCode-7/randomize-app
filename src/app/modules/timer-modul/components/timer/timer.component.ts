@@ -10,6 +10,7 @@ import {ProgressSpinnerMode} from '@angular/material/progress-spinner';
   styleUrls: ['./timer.component.scss']
 })
 export class TimerComponent {
+  //TODO: TrinkUhr
   timeForm: FormGroup;
   forms: string[]
   feierabendDateString: string = "feierabend";
