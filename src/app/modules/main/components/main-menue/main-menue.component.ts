@@ -21,10 +21,10 @@ export class MainMenueComponent {
 
   constructor(private router: Router) {
     this.tabs.push(
-      new Tab("randomizer", "/"),
-      new Tab("timer", "/timer"),
-      new Tab("qrcode", "/qr"),
-      new Tab("poker", "/poker")
+      new Tab("Randomizer", "/"),
+      new Tab("Timer", "/timer"),
+      new Tab("Qrcode-Share", "/qr"),
+      new Tab("Planningpoker", "/poker")
     )
   }
 }
