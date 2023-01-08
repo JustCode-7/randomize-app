@@ -1,23 +1,20 @@
 import { Component, OnInit } from '@angular/core';
-import * as stream from "stream";
-import {async} from "rxjs";
 
 @Component({
   selector: 'app-camera-view',
   templateUrl: './camera-view.component.html',
   styleUrls: ['./camera-view.component.scss'],
 })
-export class CameraViewComponent {
+export class CameraViewComponent implements OnInit{
 
-   controls = document.querySelector('.controls');
-   cameraOptions = document.querySelector('.video-options>select');
-   video = document.querySelector('video');
-   canvas = document.querySelector('canvas');
-   screenshotImage = document.querySelector('img');
-   streamStarted = false;
+  controls = document.querySelector('.controls');
+  cameraOptions = document.querySelector('.video-options>select');
+  video = document.querySelector('video');
+  canvas = document.querySelector('canvas');
+  screenshotImage = document.querySelector('img');
+  streamStarted = false;
 
-
-   constraints = {
+  constraints = {
     video: {
       width: {
         min: 1280,
@@ -31,6 +28,10 @@ export class CameraViewComponent {
       },
     }
   };
+
+    ngOnInit(): void {
+      this.getCameraSelection().then(value => console.log("selection loaded"));
+    }
 
    async getCameraSelection() {
      let devices = await navigator.mediaDevices.enumerateDevices();
@@ -51,10 +52,10 @@ export class CameraViewComponent {
       let updatedConstraints = {
         ... (this.constraints),
         deviceId: {
-          exact: this.cameraOptions!
+          exact: this.cameraOptions!.nodeValue
         }
       };
-      this.startStream(updatedConstraints);
+      this.startStream(updatedConstraints).then(value => console.log("stream started => " + value));
     }
   };
 
