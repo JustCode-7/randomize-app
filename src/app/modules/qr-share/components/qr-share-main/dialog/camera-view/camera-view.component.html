@@ -1,7 +1,8 @@
 <h1 mat-dialog-title>Camera</h1>
 <div class="d-flex flex-column " mat-dialog-content>
   <div>
-    <webcam (cameraSwitched)="cameraWasSwitched($event)" (imageCapture)="captureImg($event)"
+    <webcam (cameraSwitched)="cameraWasSwitched($event)"
+            (imageCapture)="captureImg($event)"
             (initError)="handleInitError($event)"
             *ngIf="showWebcam"
             [allowCameraSwitch]="true"
@@ -16,11 +17,13 @@
   <div id="results">Your taken image to Copy...</div>
   <img [height]="500" [hidden]="imageHidden" [src]="webcamImage?.imageAsDataUrl" [width]="500"/>
 </div>
-<div class="d-flex flex-column " mat-dialog-content>
-  <button (click)="triggerSnapshot()" class="btn btn-danger">
+<div class="d-flex flex-column mt-2 " mat-dialog-content>
+  <button (click)="triggerSnapshot()" class="btn btn-danger" mat-button>
     Take A Snapshot
   </button>
-  <button (click)="showNextWebcam(true);" [disabled]="!multipleWebcamsAvailable" class="actionBtn">change Webcam
+  <br/>
+  <button (click)="showNextWebcam(true);" [disabled]="!multipleWebcamsAvailable" class="actionBtn" mat-button>change
+    Webcam
   </button>
   <br/>
 </div>

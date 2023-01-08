@@ -7,7 +7,8 @@ import {CameraViewComponent} from "../components/qr-share-main/dialog/camera-vie
 })
 export class QrcodeServiceService {
 
-  constructor(public dialog: MatDialog) {}
+  constructor(public dialog: MatDialog) {
+  }
 
   openNewTabWithQRValue(value: string) {
     let input = new String(value);
@@ -23,22 +24,8 @@ export class QrcodeServiceService {
     this.getClipboardContents();
   }
 
-  // dont work in firefox
-  // choose the right npm - package
-  async getClipboardContents() {
-    alert("work in progress");
-    //const clipboardItems = await navigator.clipboard.read();
-    // let text = navigator.clipboard.read();
-
-    /*  for (const clipboardItem of clipboardItems) {
-
-        for (const type of clipboardItem.types) {
-          const blob = await clipboardItem.getType(type);
-          console.log(blob)
-        }
-      }
-      */
-    // console.log(text)
+  getClipboardContents() {
+    document.execCommand("paste")
   }
 
 
@@ -46,7 +33,7 @@ export class QrcodeServiceService {
     // alert("work in progress");
     if ('mediaDevices' in navigator && 'getUserMedia' in navigator.mediaDevices) {
       console.log("Let's get this party started")
-    this.getCameraAcc();
+      this.getCameraAcc();
     }
   }
 
