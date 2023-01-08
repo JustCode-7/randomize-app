@@ -1,26 +1,26 @@
 <h1 mat-dialog-title>Camera</h1>
-<div mat-dialog-content>
-  <div class="display-cover">
-
-    <video autoplay></video>
-    <canvas class="d-none"></canvas>
-
-    <div class="video-options">
-      <select name="" id="" class="custom-select">
-        <option value="">Select camera</option>
-      </select>
-    </div>
-
-    <img class="screenshot-image d-none" alt="">
+<div class="d-flex flex-column " mat-dialog-content>
+  <div>
+    <webcam (cameraSwitched)="cameraWasSwitched($event)" (imageCapture)="captureImg($event)"
+            (initError)="handleInitError($event)"
+            *ngIf="showWebcam"
+            [allowCameraSwitch]="true"
+            [height]="500" [imageQuality]="1"
+            [switchCamera]="nextWebcamObservable"
+            [trigger]="invokeObservable"
+            [videoOptions]="videoOptions"
+            [width]="500"
+    ></webcam>
+    <br/>
   </div>
-  <button (click)="playprivateOnclick()">play</button>
-  <div class="controls">
-    <button class="btn btn-danger play" title="Play"><i data-feather="play-circle"></i></button>
-    <button class="btn btn-info pause d-none" title="Pause"><i data-feather="pause"></i></button>
-    <button class="btn btn-outline-success screenshot d-none" title="ScreenShot"><i data-feather="image"></i></button>
-  </div>
-<!--  <mat-radio-group aria-label="Select an option"><br>-->
-<!--    <mat-radio-button (click)="playprivateOnclick()" value="1">Front Camera</mat-radio-button>-->
-<!--    <mat-radio-button (click)="playprivateOnclick()" value="2">Back Camera</mat-radio-button>-->
-<!--  </mat-radio-group>-->
+  <div id="results">Your taken image to Copy...</div>
+  <img [height]="500" [hidden]="imageHidden" [src]="webcamImage?.imageAsDataUrl" [width]="500"/>
+</div>
+<div class="d-flex flex-column " mat-dialog-content>
+  <button (click)="triggerSnapshot()" class="btn btn-danger">
+    Take A Snapshot
+  </button>
+  <button (click)="showNextWebcam(true);" [disabled]="!multipleWebcamsAvailable" class="actionBtn">change Webcam
+  </button>
+  <br/>
 </div>

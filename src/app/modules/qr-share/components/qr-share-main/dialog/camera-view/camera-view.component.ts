@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import {Observable, Subject} from "rxjs";
+import {WebcamImage, WebcamInitError, WebcamUtil} from "ngx-webcam";
+import {error} from "@angular/compiler/src/util";
 
 @Component({
   selector: 'app-camera-view',
@@ -6,71 +9,51 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./camera-view.component.scss'],
 })
 export class CameraViewComponent implements OnInit{
+  public showWebcam = true;
+  private trigger: Subject<void> = new Subject<void>();
+  public webcamImage!: WebcamImage;
+  private nextWebcam: Subject<boolean|string> = new Subject<boolean|string>();
+  sysImage = '';
+  videoOptions: any;
+  public multipleWebcamsAvailable = false;
+  public errors: WebcamInitError[] = [];
+  public deviceId: string | boolean | undefined;
+  imageHidden = true;
 
-  controls = document.querySelector('.controls');
-  cameraOptions = document.querySelector('.video-options>select');
-  video = document.querySelector('video');
-  canvas = document.querySelector('canvas');
-  screenshotImage = document.querySelector('img');
-  streamStarted = false;
+  ngOnInit() {
+    WebcamUtil.getAvailableVideoInputs()
+      .then((mediaDevices: MediaDeviceInfo[]) => {
+        this.multipleWebcamsAvailable = mediaDevices && mediaDevices.length > 1;
+      });
+  }
+  public captureImg(webcamImage: WebcamImage): void {
+    this.webcamImage = webcamImage;
+    this.sysImage = webcamImage!.imageAsDataUrl;
+    console.info('got webcam image', this.sysImage);
+  }
+  public get invokeObservable(): Observable<any> {
+    return this.trigger.asObservable();
+  }
+  public get nextWebcamObservable(): Observable<any> {
+    return this.nextWebcam.asObservable();
+  }
+  cameraWasSwitched(deviceId: string) {
+    console.log('active device: ' + deviceId);
+    this.deviceId = deviceId;
+  }
+  handleInitError(error: WebcamInitError) {
+    this.errors.push(error);
+  }
 
-  constraints = {
-    video: {
-      width: {
-        min: 1280,
-        ideal: 1920,
-        max: 2560,
-      },
-      height: {
-        min: 720,
-        ideal: 1080,
-        max: 1440
-      },
-    }
-  };
+  public triggerSnapshot(): void {
+    this.imageHidden = false;
+    this.trigger.next();
+  }
 
-    ngOnInit(): void {
-      this.getCameraSelection().then(value => console.log("selection loaded"));
-    }
-
-   async getCameraSelection() {
-     let devices = await navigator.mediaDevices.enumerateDevices();
-     let videoDevices = devices.filter(device => device.kind === 'videoinput');
-     let options = videoDevices.map(videoDevice => {
-       return `<option value="${videoDevice.deviceId}">${videoDevice.label}</option>`;
-     });
-     this.cameraOptions!.innerHTML = options.join('');
-   };
-
-
-  playprivateOnclick() {
-    if (this.streamStarted) {
-      this.video!.play();
-      return;
-    }
-    if ('mediaDevices' in navigator && navigator.mediaDevices.getUserMedia) {
-      let updatedConstraints = {
-        ... (this.constraints),
-        deviceId: {
-          exact: this.cameraOptions!.nodeValue
-        }
-      };
-      this.startStream(updatedConstraints).then(value => console.log("stream started => " + value));
-    }
-  };
-
- async startStream(constraint: MediaStreamConstraints | undefined) {
-    await navigator.mediaDevices.getUserMedia(constraint)
-      .then((stream) =>{
-        this.handleStream(stream);
-      } )
-      .catch(reason => console.log(reason));
-
-  };
-
-  handleStream(stream: MediaProvider | null){
-    this.video!.srcObject = stream;
-    this.streamStarted = true;
-  };
-
+  public showNextWebcam(directionOrDeviceId: boolean|string|undefined): void {
+    // true => move forward through devices
+    // false => move backwards through devices
+    // string => move to device with given deviceId
+    this.nextWebcam.next(directionOrDeviceId!);
+  }
 }

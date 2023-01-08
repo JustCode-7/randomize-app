@@ -10,6 +10,7 @@ import {NgbModule} from "@ng-bootstrap/ng-bootstrap";
 import { CameraViewComponent } from './components/qr-share-main/dialog/camera-view/camera-view.component';
 import {MatDialogModule} from "@angular/material/dialog";
 import {MatRadioModule} from "@angular/material/radio";
+import {WebcamModule} from "ngx-webcam";
 
 
 @NgModule({
@@ -21,16 +22,17 @@ import {MatRadioModule} from "@angular/material/radio";
   exports: [
     QrShareMainComponent
   ],
-  imports: [
-    CommonModule,
-    MatFormFieldModule,
-    FormsModule,
-    MatInputModule,
-    MatButtonModule,
-    NgbModule,
-    MatDialogModule,
-    MatRadioModule,
-  ]
+    imports: [
+        CommonModule,
+        MatFormFieldModule,
+        FormsModule,
+        MatInputModule,
+        MatButtonModule,
+        NgbModule,
+        MatDialogModule,
+        MatRadioModule,
+        WebcamModule,
+    ]
 })
 export class QrShareModule {
 }
