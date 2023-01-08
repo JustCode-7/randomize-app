@@ -25,25 +25,19 @@ export class QrcodeServiceService {
   }
 
   getClipboardContents() {
-    document.execCommand("paste")
+    //use https://www.npmjs.com/package/qr-scanner and scan from image
+    // image = document.execCommand("paste")
   }
 
 
   scanQRCodeWithCam() {
-    // alert("work in progress");
     if ('mediaDevices' in navigator && 'getUserMedia' in navigator.mediaDevices) {
-      console.log("Let's get this party started")
-      this.getCameraAcc();
+      this.useCamera();
     }
   }
 
-  getCameraAcc() {
-    this.readQRCode()
-  }
-
-  private readQRCode() {
+  useCamera() {
     this.dialog.open(CameraViewComponent)
-
   }
 
 }
