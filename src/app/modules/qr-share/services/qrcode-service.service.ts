@@ -1,12 +1,13 @@
 import {Injectable} from '@angular/core';
+import {MatDialog} from "@angular/material/dialog";
+import {CameraViewComponent} from "../components/qr-share-main/dialog/camera-view/camera-view.component";
 
 @Injectable({
   providedIn: 'root'
 })
 export class QrcodeServiceService {
 
-  constructor() {
-  }
+  constructor(public dialog: MatDialog) {}
 
   openNewTabWithQRValue(value: string) {
     let input = new String(value);
@@ -42,15 +43,20 @@ export class QrcodeServiceService {
 
 
   scanQRCodeWithCam() {
-    alert("work in progress");
-    // this.getCameraAcc();
-    // if ('mediaDevices' in navigator && 'getUserMedia' in navigator.mediaDevices) {
-    //   console.log("Let's get this party started")
-    // }
+    // alert("work in progress");
+    if ('mediaDevices' in navigator && 'getUserMedia' in navigator.mediaDevices) {
+      console.log("Let's get this party started")
+    this.getCameraAcc();
+    }
   }
 
   getCameraAcc() {
-    navigator.mediaDevices.getUserMedia({video: true});
+    this.readQRCode()
+  }
+
+  private readQRCode() {
+    this.dialog.open(CameraViewComponent)
+
   }
 
 }

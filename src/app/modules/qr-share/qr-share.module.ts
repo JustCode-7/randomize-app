@@ -7,12 +7,16 @@ import {FormsModule} from "@angular/forms";
 import {MatInputModule} from "@angular/material/input";
 import {MatButtonModule} from "@angular/material/button";
 import {NgbModule} from "@ng-bootstrap/ng-bootstrap";
+import { CameraViewComponent } from './components/qr-share-main/dialog/camera-view/camera-view.component';
+import {MatDialogModule} from "@angular/material/dialog";
+import {MatRadioModule} from "@angular/material/radio";
 
 
 @NgModule({
   declarations: [
     QrShareMainComponent,
-    GenerateQrCodeComponent
+    GenerateQrCodeComponent,
+    CameraViewComponent
   ],
   exports: [
     QrShareMainComponent
@@ -24,6 +28,8 @@ import {NgbModule} from "@ng-bootstrap/ng-bootstrap";
     MatInputModule,
     MatButtonModule,
     NgbModule,
+    MatDialogModule,
+    MatRadioModule,
   ]
 })
 export class QrShareModule {

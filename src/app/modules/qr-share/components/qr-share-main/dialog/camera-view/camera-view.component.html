@@ -1,0 +1,24 @@
+<h1 mat-dialog-title>Camera</h1>
+<div mat-dialog-content>
+  <div class="display-cover">
+    <video autoplay></video>
+    <canvas class="d-none"></canvas>
+
+    <div class="video-options">
+      <select name="" id="" class="custom-select">
+        <option value="">Select camera</option>
+      </select>
+    </div>
+
+    <img class="screenshot-image d-none" alt="">
+  </div>
+  <div class="controls">
+    <button class="btn btn-danger play" title="Play"><i data-feather="play-circle"></i></button>
+    <button class="btn btn-info pause d-none" title="Pause"><i data-feather="pause"></i></button>
+    <button class="btn btn-outline-success screenshot d-none" title="ScreenShot"><i data-feather="image"></i></button>
+  </div>
+<!--  <mat-radio-group aria-label="Select an option"><br>-->
+<!--    <mat-radio-button (click)="playprivateOnclick()" value="1">Front Camera</mat-radio-button>-->
+<!--    <mat-radio-button (click)="playprivateOnclick()" value="2">Back Camera</mat-radio-button>-->
+<!--  </mat-radio-group>-->
+</div>
