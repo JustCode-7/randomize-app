@@ -6,12 +6,12 @@
   </div>
 </div>
 <div class="d-flex flex-column mt-2 " mat-dialog-content>
-  <button (click)="readQRFromVideo()" class="btn btn-danger" mat-button>
+  <button (click)="readQRFromVideo()" class="btn btn-info" mat-button>
     Read QR
   </button>
   <br/>
-  <button (click)="stopScan();" [disabled]="!scannerStarted" class="actionBtn" mat-button>
-    stop Scan
+  <button (click)="stopScan()" [disabled]="!scannerStarted" class="btn btn-danger" mat-button>
+    stop Scan and open tab
   </button>
   <br/>
 </div>

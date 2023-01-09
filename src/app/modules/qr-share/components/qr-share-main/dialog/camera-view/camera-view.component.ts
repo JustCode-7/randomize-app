@@ -55,7 +55,10 @@ export class CameraViewComponent implements OnInit {
   }
 
   stopScan() {
-    this.qrcodeService.setScannedQrCodeDataValue(this.qrDataResult);
+    if (this.qrDataResult !== "") {
+      this.qrcodeService.setScannedQrCodeDataValue(this.qrDataResult);
+      this.qrcodeService.openNewTabWithQRValue(this.qrDataResult);
+    }
     this.qrScanner.stop();
     this.dialogRef.close();
     this.dialogRef.afterClosed().subscribe(() => {
