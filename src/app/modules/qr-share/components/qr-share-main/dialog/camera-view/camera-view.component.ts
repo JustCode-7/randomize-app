@@ -13,7 +13,10 @@ export class CameraViewComponent implements OnInit {
   qrDataResult: string = "";
   qrScanner: any = null;
   img: HTMLImageElement | null = document.querySelector('#myImage');
-  public scannerStarted = this.qrScanner == null;
+  $scannerStarted = false;
+  $stopAndOpen: string = "close window";
+  $btnstopcolor: any = "btn-info";
+  $scannerNotNeeded = false;
 
   constructor(public qrcodeService: QrcodeServiceService, private dialogRef: MatDialogRef<CameraViewComponent>) {
   }
@@ -52,22 +55,29 @@ export class CameraViewComponent implements OnInit {
       },
     );
     this.qrScanner.start();
+    this.$scannerStarted = true;
   }
 
-  stopScan() {
+  closeWindowOrStopScan() {
     if (this.qrDataResult !== "") {
-      this.qrcodeService.setScannedQrCodeDataValue(this.qrDataResult);
       this.qrcodeService.openNewTabWithQRValue(this.qrDataResult);
     }
-    this.qrScanner.stop();
+    if (this.qrScanner !== null) {
+      this.qrScanner.stop();
+    }
     this.dialogRef.close();
     this.dialogRef.afterClosed().subscribe(() => {
     });
   }
 
   private handleResult(result: QrScanner.ScanResult) {
-    console.log(result)
-    console.log(result.data)
+    // console.log(result)
+    // console.log(result.data)
+    if (result != null && result.data !== "") {
+      this.$stopAndOpen = "stop scan and open in new tab";
+      this.$btnstopcolor = "btn-outline-success";
+      this.$scannerNotNeeded = true;
+    }
     this.qrDataResult = result.data;
   }
 }
