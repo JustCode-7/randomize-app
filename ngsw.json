@@ -1,6 +1,6 @@
 {
   "configVersion": 1,
-  "timestamp": 1673211620530,
+  "timestamp": 1673227737698,
   "index": "/randomize-app/index.html",
   "assetGroups": [
     {
@@ -11,11 +11,12 @@
         "ignoreVary": true
       },
       "urls": [
+        "/randomize-app/920.6bda3facdb516174.js",
         "/randomize-app/index.html",
-        "/randomize-app/main.be23d7fd85b3df70.js",
+        "/randomize-app/main.5cc33303a695f8d7.js",
         "/randomize-app/manifest.webmanifest",
         "/randomize-app/polyfills.d7725728a6426a3a.js",
-        "/randomize-app/runtime.9b793cbeb728d11f.js",
+        "/randomize-app/runtime.b28e058535df5f7f.js",
         "/randomize-app/styles.7af9e1de04415b24.css"
       ],
       "patterns": []
@@ -42,6 +43,7 @@
   ],
   "dataGroups": [],
   "hashTable": {
+    "/randomize-app/920.6bda3facdb516174.js": "4bd82baec4cefa560fcbd6a4b7a7c9f21298a4ca",
     "/randomize-app/assets/icons/icons8-16.png": "0939bf0bdfc65f60bcf37239f21b549f132ef996",
     "/randomize-app/assets/icons/icons8-32.ico": "ec4d231840984ee454272dcf8e0c3468d8d9fc1c",
     "/randomize-app/assets/icons/icons8-32.png": "31b1387d840345f28c592c84985d93fe61c2d8c4",
@@ -50,11 +52,11 @@
     "/randomize-app/assets/icons/random.ico": "d01f52138b06bb612e9bb1d496cf60b55be03627",
     "/randomize-app/assets/icons/random.png": "babe945f01d621a0e7f3fcbed40e1edee98a5315",
     "/randomize-app/assets/icons/random.svg": "583affae8b9b478e64a05b803914b7cc918b2141",
-    "/randomize-app/index.html": "9ec374d784dff27d41c6df5868b5fcdc3725f49b",
-    "/randomize-app/main.be23d7fd85b3df70.js": "ba8d3c260f7654a778ec14d10ed72c4515b16359",
+    "/randomize-app/index.html": "fc4a9a3915316cdade6feba06ff0305014df3111",
+    "/randomize-app/main.5cc33303a695f8d7.js": "ea32a4fd164ed5ba1cda0f655cd01ddf13804c2d",
     "/randomize-app/manifest.webmanifest": "572d7b43099e11093cd23ba1adbb57830eaf6734",
     "/randomize-app/polyfills.d7725728a6426a3a.js": "20c6a69330b279d08a5e622f17239535707e8151",
-    "/randomize-app/runtime.9b793cbeb728d11f.js": "113e3c12eee5ab15f3461a8fba6604896b70138c",
+    "/randomize-app/runtime.b28e058535df5f7f.js": "6d94f1fd928d71629f902b9ffdb9e53f38ee90ea",
     "/randomize-app/styles.7af9e1de04415b24.css": "dcec96debc5ae050d0d4dcedd8e7e0ad95221be2"
   },
   "navigationUrls": [
