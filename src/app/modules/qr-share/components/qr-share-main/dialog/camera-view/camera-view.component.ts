@@ -64,7 +64,12 @@ export class CameraViewComponent implements OnInit {
     const qrScanner = new QrScanner(
       this.localVideo,
       result => console.log('decoded qr code:', result),
-      { /* your options or returnDetailedScanResult: true if you're not specifying any other options */},
+      {
+        returnDetailedScanResult: true,
+        highlightScanRegion: true,
+        highlightCodeOutline: true,
+        maxScansPerSecond: 60
+      },
     );
     qrScanner.start();
   }
