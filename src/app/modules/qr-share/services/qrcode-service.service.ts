@@ -6,12 +6,12 @@ import {CameraViewComponent} from "../components/qr-share-main/dialog/camera-vie
   providedIn: 'root'
 })
 export class QrcodeServiceService {
+  private _scannedQrCodeDataValue = "";
+
   constructor(public dialog: MatDialog) {
   }
 
-  private _scannedQrCodeDataValue = "";
-
-  get scannedQrCodeDataValue(): string {
+  getScannedQrCodeDataValue(): string {
     return this._scannedQrCodeDataValue;
   }
 

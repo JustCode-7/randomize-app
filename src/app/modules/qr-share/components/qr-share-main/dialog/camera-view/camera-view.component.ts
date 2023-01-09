@@ -43,7 +43,7 @@ export class CameraViewComponent implements OnInit {
   readQRFromVideo() {
     this.qrScanner = new QrScanner(
       this.localVideo,
-      result => this.qrDataResult = result.data,
+      result => this.handleResult(result),
       {
         returnDetailedScanResult: true,
         highlightScanRegion: true,
@@ -60,5 +60,11 @@ export class CameraViewComponent implements OnInit {
     this.dialogRef.close();
     this.dialogRef.afterClosed().subscribe(() => {
     });
+  }
+
+  private handleResult(result: QrScanner.ScanResult) {
+    console.log(result)
+    console.log(result.data)
+    this.qrDataResult = result.data;
   }
 }
