@@ -61,10 +61,12 @@ export class GenerateQrCodeComponent {
   centerImageSrc = this.imageSrc
   centerImageHeight = this.imageHeight || 40
   centerImageWidth = this.imageWidth || 40
+  latest: string[] = [];
   private centerImage?: HTMLImageElement
 
   constructor(private renderer: Renderer2, private sanitizer: DomSanitizer, public qrcodeService: QrcodeServiceService) {
     this.value = "https://www.google.de/";
+    this.latest = this.getListFromLocalStorage() ?? [];
     this.generateQR();
   }
 
@@ -242,8 +244,39 @@ export class GenerateQrCodeComponent {
     await this.createQRCode()
   }
 
+  async generateQROnClick(value: string) {
+    if (this.latest.length > 5) {
+      this.latest.shift();
+      this.latest.push(value);
+    } else {
+      this.latest.push(value);
+    }
+    this.saveInLocalSorage(this.latest);
+    this.qrdata = value;
+    await this.createQRCode()
+  }
+
+  getItemFromLatest(value: string) {
+    this.value = value;
+    this.generateQR()
+  }
+
+  saveInLocalSorage(items: string[]) {
+    localStorage.setItem('list', JSON.stringify(items));
+  }
+
+  getListFromLocalStorage() {
+    return JSON.parse(localStorage.getItem('list')!);
+  }
+
+  clearList() {
+    this.latest = [];
+    this.saveInLocalSorage(this.latest);
+    window.location.reload();
+  }
+
   protected isValidQrCodeText(data: string | null): boolean {
-    if (this.allowEmptyString === false) {
+    if (!this.allowEmptyString) {
       return !(
         typeof data === "undefined" ||
         data === "" ||
@@ -336,5 +369,4 @@ export class GenerateQrCodeComponent {
       console.error("Error generating QR Code:", e.message)
     }
   }
-
 }

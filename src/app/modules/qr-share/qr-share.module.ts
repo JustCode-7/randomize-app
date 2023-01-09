@@ -7,10 +7,12 @@ import {FormsModule} from "@angular/forms";
 import {MatInputModule} from "@angular/material/input";
 import {MatButtonModule} from "@angular/material/button";
 import {NgbModule} from "@ng-bootstrap/ng-bootstrap";
-import { CameraViewComponent } from './components/qr-share-main/dialog/camera-view/camera-view.component';
+import {CameraViewComponent} from './components/qr-share-main/dialog/camera-view/camera-view.component';
 import {MatDialogModule} from "@angular/material/dialog";
 import {MatRadioModule} from "@angular/material/radio";
 import {WebcamModule} from "ngx-webcam";
+import {MatListModule} from "@angular/material/list";
+import {MatIconModule} from "@angular/material/icon";
 
 
 @NgModule({
@@ -22,17 +24,19 @@ import {WebcamModule} from "ngx-webcam";
   exports: [
     QrShareMainComponent
   ],
-    imports: [
-        CommonModule,
-        MatFormFieldModule,
-        FormsModule,
-        MatInputModule,
-        MatButtonModule,
-        NgbModule,
-        MatDialogModule,
-        MatRadioModule,
-        WebcamModule,
-    ]
+  imports: [
+    CommonModule,
+    MatFormFieldModule,
+    FormsModule,
+    MatInputModule,
+    MatButtonModule,
+    NgbModule,
+    MatDialogModule,
+    MatRadioModule,
+    WebcamModule,
+    MatListModule,
+    MatIconModule,
+  ]
 })
 export class QrShareModule {
 }
