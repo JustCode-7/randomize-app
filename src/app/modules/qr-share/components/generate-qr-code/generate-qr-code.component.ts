@@ -65,7 +65,7 @@ export class GenerateQrCodeComponent {
 
   constructor(private renderer: Renderer2, private sanitizer: DomSanitizer, public qrcodeService: QrcodeServiceService) {
     this.value = "https://www.google.de/";
-    this.generateQR(this.value);
+    this.generateQR();
   }
 
   isQRCodeDataValid() {
@@ -237,8 +237,8 @@ export class GenerateQrCodeComponent {
       })
   }
 
-  async generateQR(value: string | any) {
-    this.qrdata = value;
+  async generateQR() {
+    this.qrdata = this.value;
     await this.createQRCode()
   }
 

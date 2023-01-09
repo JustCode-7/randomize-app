@@ -8,8 +8,6 @@ import {QrcodeServiceService} from "../../services/qrcode-service.service";
 })
 export class QrShareMainComponent {
   constructor(public qrcodeService: QrcodeServiceService) {
-
   }
-
 
 }

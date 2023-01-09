@@ -2,20 +2,15 @@
   <div class="d-flex justify-content-center bd-highlight mb-3">
     <mat-form-field appearance="fill">
       <mat-label>Input for QR-Code generation</mat-label>
-      <input [(ngModel)]="value" matInput placeholder="enter https">
+      <input (selectionchange)="generateQR()" [(ngModel)]="value" matInput placeholder="enter text for QR-Code">
     </mat-form-field>
   </div>
   <div class="d-flex justify-content-center bd-highlight mb-3">
-    <div #qrcElement [class]="cssClass" changeDetection="onPush" class="p-3 my-2 mx-2" onPaste>
+    <div #qrcElement [class]="cssClass" class="p-3 my-2 mx-2">
     </div>
   </div>
   <div class="d-flex justify-content-center p-3 my-2 mx-2 ">
-    <button (click)="generateQR(value)" color="accent" mat-raised-button>
-      Generate QR-code
-    </button>
-  </div>
-  <div class="d-flex justify-content-center p-3 my-2 mx-2 ">
-    <button (click)="qrcodeService.openNewTabWithQRValue(value)" color="primary"
+    <button (click)="qrcodeService.openNewTabWithQRValue(value)" color="accent"
             mat-raised-button>
       open new tab with QR-code destination
     </button>
