@@ -6,8 +6,17 @@ import {CameraViewComponent} from "../components/qr-share-main/dialog/camera-vie
   providedIn: 'root'
 })
 export class QrcodeServiceService {
-
   constructor(public dialog: MatDialog) {
+  }
+
+  private _scannedQrCodeDataValue = "";
+
+  get scannedQrCodeDataValue(): string {
+    return this._scannedQrCodeDataValue;
+  }
+
+  setScannedQrCodeDataValue(qrDataResult: string) {
+    this._scannedQrCodeDataValue = qrDataResult;
   }
 
   openNewTabWithQRValue(value: string) {
@@ -19,20 +28,8 @@ export class QrcodeServiceService {
     }
   }
 
-
-  getQRCodeFromClipboard() {
-    this.getClipboardContents();
-  }
-
-  getClipboardContents() {
-    //use https://www.npmjs.com/package/qr-scanner and scan from image
-    // image = document.execCommand("paste")
-  }
-
-
   scanQRCodeWithCam() {
     if ('mediaDevices' in navigator && 'getUserMedia' in navigator.mediaDevices) {
-
       this.useCamera();
     }
   }
@@ -53,4 +50,6 @@ export class QrcodeServiceService {
     })(navigator.userAgent || navigator.vendor);
     return check;
   };
+
+
 }

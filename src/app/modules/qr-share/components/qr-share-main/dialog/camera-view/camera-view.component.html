@@ -1,31 +1,17 @@
-<h1 mat-dialog-title>Camera</h1>
+<h1 mat-dialog-title>Click to focus the QR-Code</h1>
 <div class="d-flex flex-column " mat-dialog-content>
   <div>
     <video autoplay controls id="myVidPlayer" muted></video>
-
-    <!--    <webcam (cameraSwitched)="cameraWasSwitched($event)"-->
-    <!--            (imageCapture)="captureImg($event)"-->
-    <!--            (initError)="handleInitError($event)"-->
-    <!--            *ngIf="showWebcam"-->
-    <!--            [allowCameraSwitch]="true"-->
-    <!--            [height]="500" [imageQuality]="1"-->
-    <!--            [switchCamera]="nextWebcamObservable"-->
-    <!--            [trigger]="invokeObservable"-->
-    <!--            [videoOptions]="videoOptions"-->
-    <!--            [width]="500"-->
-    <!--    ></webcam>-->
     <br/>
   </div>
-  <!--  <div id="results">Your taken image to Copy...</div>-->
-  <!--  <img [height]="500" [hidden]="imageHidden" [src]="webcamImage?.imageAsDataUrl" [width]="500" id="myImage"/>-->
 </div>
 <div class="d-flex flex-column mt-2 " mat-dialog-content>
   <button (click)="readQRFromVideo()" class="btn btn-danger" mat-button>
     Read QR
   </button>
   <br/>
-  <!--  <button (click)="showNextWebcam(true);" [disabled]="!multipleWebcamsAvailable" class="actionBtn" mat-button>change-->
-  <!--    Webcam-->
-  <!--  </button>-->
-  <!--  <br/>-->
+  <button (click)="stopScan();" [disabled]="!scannerStarted" class="actionBtn" mat-button>
+    stop Scan
+  </button>
+  <br/>
 </div>

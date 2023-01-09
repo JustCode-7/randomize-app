@@ -238,6 +238,9 @@ export class GenerateQrCodeComponent {
   }
 
   async generateQR() {
+    if (this.qrcodeService.scannedQrCodeDataValue !== "") {
+      this.value = this.qrcodeService.scannedQrCodeDataValue;
+    }
     this.qrdata = this.value;
     await this.createQRCode()
   }

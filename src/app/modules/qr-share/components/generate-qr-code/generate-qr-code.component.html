@@ -2,7 +2,7 @@
   <div class="d-flex justify-content-center bd-highlight mb-3">
     <mat-form-field appearance="fill">
       <mat-label>Input for QR-Code generation</mat-label>
-      <input (selectionchange)="generateQR()" [(ngModel)]="value" matInput placeholder="enter text for QR-Code">
+      <input (input)="generateQR()" [(ngModel)]="value" matInput placeholder="enter text for QR-Code">
     </mat-form-field>
   </div>
   <div class="d-flex justify-content-center bd-highlight mb-3">
