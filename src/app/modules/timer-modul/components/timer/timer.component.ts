@@ -1,4 +1,4 @@
-import {Component} from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 import {ThemePalette} from "@angular/material/core";
 import {formatDate} from "@angular/common";
@@ -9,7 +9,7 @@ import {ProgressSpinnerMode} from '@angular/material/progress-spinner';
   templateUrl: './timer.component.html',
   styleUrls: ['./timer.component.scss']
 })
-export class TimerComponent {
+export class TimerComponent implements OnInit {
   //TODO: TrinkUhr
   timeForm: FormGroup;
   forms: string[]
@@ -39,6 +39,10 @@ export class TimerComponent {
     });
   }
 
+  ngOnInit(): void {
+    this.setInitialStartTime();
+  }
+
   public calculateTotal() {
     if (this.timeForm.valid) {
       this.startTimeArr = this.timeForm.get("starttime")?.value.split(":");
@@ -53,6 +57,15 @@ export class TimerComponent {
       this.getSpinnerMaxValue();
       this.setSpinnerValue(this.startTimeArr);
       this.timeLoop(this.startTimeArr);
+      this.storeStartTimeInLocalStorage();
+    }
+  }
+
+  setInitialStartTime() {
+    if (localStorage.getItem('startTime') != null) {
+      this.timeForm.get("starttime")?.setValue(JSON.parse(localStorage.getItem('startTime')!))
+    } else {
+      this.timeForm.get("starttime")?.setValue(this.getFormattedTimeString(9, 30))
     }
   }
 
@@ -62,6 +75,10 @@ export class TimerComponent {
     let vergangenInMinuten = (currentZeit - startZeit) / 60000;
     this.vergangen = vergangenInMinuten;
     return vergangenInMinuten * 100 / this.maxSpinnerValue;
+  }
+
+  private storeStartTimeInLocalStorage() {
+    localStorage.setItem('startTime', JSON.stringify(this.timeForm.get("starttime")?.value));
   }
 
   private getSumOfHours() {
@@ -120,5 +137,6 @@ export class TimerComponent {
     let minutes = this.maxSpinnerValue - this.vergangen;
     this.remaining = this.getFormattedTimeString(0, minutes);
   }
+
 
 }
