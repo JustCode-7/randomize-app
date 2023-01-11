@@ -20,15 +20,22 @@
       open new tab with QR-code destination
     </button>
   </div>
-  <mat-selection-list [multiple]="false">
-    <mat-list-option (click)="getItemFromLatest(item)" *ngFor="let item of latest" [value]="item">
-      {{item}}
-    </mat-list-option>
-  </mat-selection-list>
-  <mat-divider></mat-divider>
-  <button (click)="clearList()" mat-button>
-    <mat-icon>delete</mat-icon>
-    clear list
-  </button>
+  <div class="d-flex flex-column justify-content-center p-3 my-2 mx-2 ">
+    <div class="p-3 my-2 mx-2 ">
+      <mat-selection-list [multiple]="false">
+        <mat-list-option *ngFor="let item of latest" [value]="item"
+        >
+          <mat-list-item>
+            {{item}}
+          </mat-list-item>
+        </mat-list-option>
+      </mat-selection-list>
+    </div>
+    <mat-divider></mat-divider>
+    <button (click)="clearList()" mat-button>
+      <mat-icon>delete</mat-icon>
+      clear list
+    </button>
+  </div>
 </div>
 

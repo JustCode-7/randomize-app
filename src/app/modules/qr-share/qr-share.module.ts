@@ -13,6 +13,7 @@ import {MatRadioModule} from "@angular/material/radio";
 import {WebcamModule} from "ngx-webcam";
 import {MatListModule} from "@angular/material/list";
 import {MatIconModule} from "@angular/material/icon";
+import {MatCardModule} from "@angular/material/card";
 
 
 @NgModule({
@@ -36,6 +37,7 @@ import {MatIconModule} from "@angular/material/icon";
     WebcamModule,
     MatListModule,
     MatIconModule,
+    MatCardModule,
   ]
 })
 export class QrShareModule {
