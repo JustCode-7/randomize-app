@@ -8,6 +8,7 @@ import {MatButtonModule} from "@angular/material/button";
 import {MatCardModule} from "@angular/material/card";
 import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
 import {MatIconModule} from "@angular/material/icon";
+import {MatBadgeModule} from "@angular/material/badge";
 
 
 @NgModule({
@@ -17,16 +18,17 @@ import {MatIconModule} from "@angular/material/icon";
   exports: [
     TimerComponent
   ],
-    imports: [
-        CommonModule,
-        MatFormFieldModule,
-        ReactiveFormsModule,
-        MatInputModule,
-        MatButtonModule,
-        MatCardModule,
-        MatProgressSpinnerModule,
-        MatIconModule,
-    ]
+  imports: [
+    CommonModule,
+    MatFormFieldModule,
+    ReactiveFormsModule,
+    MatInputModule,
+    MatButtonModule,
+    MatCardModule,
+    MatProgressSpinnerModule,
+    MatIconModule,
+    MatBadgeModule,
+  ]
 })
 export class TimerModulModule {
 }

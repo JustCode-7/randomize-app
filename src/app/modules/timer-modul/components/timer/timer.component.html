@@ -1,7 +1,7 @@
 <div class="p-3 d-flex justify-content-center">
   <div class="p-3 justify-content-center">
     <form (ngSubmit)="calculateTotal()"
-          [formGroup]="timeForm"
+          [formGroup]="timeForm!"
           class="form-horizontal">
       <div *ngFor="let form of forms; let i=index" class="d-flex justify-content-center my-2 mx-2 w-50 ">
         <mat-form-field appearance="fill">
@@ -14,8 +14,9 @@
               matInput
               type="time">
             <div *ngIf="form == 'pause'">
-              <div *ngIf="pauseActive">
+              <div *ngIf="pauseActive" matBadge="">
                 <mat-spinner [diameter]="12" color="warn"></mat-spinner>
+                <mat-hint [ngStyle]="{'font-size': 70+'%','color': '#880808'}">{{pauseActiveForSeconds}}</mat-hint>
               </div>
               <button (click)="startPausetimer()"
                       class="my-2 mx-2 " color="primary"
@@ -24,14 +25,14 @@
               </button>
             </div>
           </div>
+          <mat-hint *ngIf="extraPause===true && form == 'pause'" [ngStyle]="{'font-size': 90+'%','color': '#880808'}"
+                    class="justify-content-center">
+            {{pausehinweis}}
+          </mat-hint>
         </mat-form-field>
       </div>
     </form>
     <div class="d-flex flex-column justify-content-center p-3 my-2 mx-2 ">
-      <mat-hint *ngIf="extraPause===true" [ngStyle]="{'font-size': 70+'%','color': '#880808'}"
-                class="justify-content-center">
-        *extra pause
-      </mat-hint>
       <button (click)="calculateTotal()"
               class="my-2 mx-2 w-50" color="primary"
               mat-raised-button>

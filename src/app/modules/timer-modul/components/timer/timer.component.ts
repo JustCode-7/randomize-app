@@ -11,8 +11,8 @@ import {ProgressSpinnerMode} from '@angular/material/progress-spinner';
 })
 export class TimerComponent implements OnInit {
   //TODO: TrinkUhr
-  timeForm: FormGroup;
-  forms: string[]
+  timeForm!: FormGroup;
+  forms?: string[];
   feierabendDateString: string = "feierabend";
   pausenzeit: string = "pausenzeit";
   extraPause = false;
@@ -21,7 +21,8 @@ export class TimerComponent implements OnInit {
   progressSpinnerValue = 0;
   maxSpinnerValue = 0;
   timetoWorkDateString = "";
-  timerId = 1;
+  timerIdOneMinute = 1;
+  timerIdOneSecond!: NodeJS.Timeout;
   startTimeArr: string[] = [];
   workTimeArr: string[] = [];
   pauseArr: string[] = [];
@@ -31,25 +32,20 @@ export class TimerComponent implements OnInit {
   endTime: Date | undefined;
   pauseActive: boolean = false;
   iconSymbol: string = 'play_circle_filled';
+  pauseActiveForSeconds!: any;
+  pausehinweis: any;
 
   constructor(private fb: FormBuilder) {
-    this.forms = [
-      "starttime", "worktime", "pause"
-    ]
-    this.timeForm = this.fb.group({
-      starttime: [this.getFormattedTimeString(9, 30), [Validators.required]],
-      worktime: [this.getFormattedTimeString(7, 48), [Validators.required]],
-      pause: [this.getFormattedTimeString(0, 30), [Validators.required]]
-    });
   }
 
   ngOnInit(): void {
+    this.initForm();
     this.setInitialTimeValues();
     this.pauseActive = false;
   }
 
   public calculateTotal() {
-    if (this.timeForm.valid) {
+    if (this.timeForm?.valid) {
       this.startTimeArr = this.timeForm.get("starttime")?.value.split(":");
       this.workTimeArr = this.timeForm.get("worktime")?.value.split(":");
       this.pauseArr = this.timeForm.get("pause")?.value.split(":");
@@ -60,26 +56,26 @@ export class TimerComponent implements OnInit {
       this.calculatePause();
       this.getSpinnerMaxValue();
       this.setSpinnerValue(this.startTimeArr);
-      this.timeLoop(this.startTimeArr);
+      this.timeLoopForOneMinute(this.startTimeArr);
       this.storeTimesInLocalStorage();
     }
   }
 
   setInitialTimeValues() {
     if (localStorage.getItem('startTime') != null) {
-      this.timeForm.get("starttime")?.setValue(JSON.parse(localStorage.getItem('startTime')!))
+      this.timeForm?.get("starttime")?.setValue(JSON.parse(localStorage.getItem('startTime')!))
     } else {
-      this.timeForm.get("starttime")?.setValue(this.getFormattedTimeString(9, 30))
+      this.timeForm?.get("starttime")?.setValue(this.getFormattedTimeString(9, 30))
     }
     if (localStorage.getItem('workTime') != null) {
-      this.timeForm.get("worktime")?.setValue(JSON.parse(localStorage.getItem('workTime')!))
+      this.timeForm?.get("worktime")?.setValue(JSON.parse(localStorage.getItem('workTime')!))
     } else {
-      this.timeForm.get("worktime")?.setValue(this.getFormattedTimeString(7, 48))
+      this.timeForm?.get("worktime")?.setValue(this.getFormattedTimeString(7, 48))
     }
     if (localStorage.getItem('Pause') != null) {
-      this.timeForm.get("pause")?.setValue(JSON.parse(localStorage.getItem('Pause')!))
+      this.timeForm?.get("pause")?.setValue(JSON.parse(localStorage.getItem('Pause')!))
     } else {
-      this.timeForm.get("pause")?.setValue(this.getFormattedTimeString(0, 30))
+      this.timeForm?.get("pause")?.setValue(this.getFormattedTimeString(0, 30))
     }
   }
 
@@ -92,13 +88,14 @@ export class TimerComponent implements OnInit {
   }
 
   startPausetimer() {
-
     if (!this.pauseActive) {
       this.iconSymbol = 'pause_circle_filled';
       this.startTime = new Date();
       this.pauseActive = true;
+      this.timeLoopForOneSecond();
       this.calculateTotal();
     } else {
+      clearInterval(this.timerIdOneSecond);
       this.iconSymbol = 'play_circle_filled';
       this.pauseActive = false;
       this.endTime = new Date();
@@ -109,8 +106,36 @@ export class TimerComponent implements OnInit {
       let newMinuteValue = Number.parseInt(this.pauseArr[1].valueOf()) + minutes;
       this.pauseArr[1] = newMinuteValue.toString()
       this.wennMinutenDieStundengrenzeErreichenSetzeStundenfeld();
-      this.timeForm.controls['pause'].setValue(this.getFormattedTimeString(0, newMinuteValue));
+      this.timeForm?.controls['pause'].setValue(this.getFormattedTimeString(0, newMinuteValue));
     }
+  }
+
+  getSeconds() {
+    if (this.startTime == undefined || this.endTime == undefined) {
+      return -1;
+    }
+    return Number.parseInt(((this.endTime!.getTime() - this.startTime!.getTime()) / 1000).toFixed(0));
+  }
+
+  private timeLoopForOneSecond() {
+    let date1: any = new Date();
+    this.timerIdOneSecond = setInterval(() => {
+      let date3 = new Date();
+      date3.setTime(date3.getTime() - date1.getTime());
+      date3.setHours(0);
+      this.pauseActiveForSeconds = date3.toLocaleTimeString();
+    }, 1000);
+  }
+
+  private initForm() {
+    this.forms = [
+      "starttime", "worktime", "pause"
+    ]
+    this.timeForm = this.fb.group({
+      starttime: [this.getFormattedTimeString(9, 30), [Validators.required]],
+      worktime: [this.getFormattedTimeString(7, 48), [Validators.required]],
+      pause: [this.getFormattedTimeString(0, 30), [Validators.required]]
+    });
   }
 
   private wennMinutenDieStundengrenzeErreichenSetzeStundenfeld() {
@@ -121,10 +146,10 @@ export class TimerComponent implements OnInit {
   }
 
   private storeTimesInLocalStorage() {
-    localStorage.setItem('startTime', JSON.stringify(this.timeForm.get("starttime")?.value));
-    localStorage.setItem('workTime', JSON.stringify(this.timeForm.get("worktime")?.value));
+    localStorage.setItem('startTime', JSON.stringify(this.timeForm?.get("starttime")?.value));
+    localStorage.setItem('workTime', JSON.stringify(this.timeForm?.get("worktime")?.value));
     //TODO: eventuell mit TimeStamp, um es für den nächsten Tag wieder auf 30 zu setzen
-    localStorage.setItem('Pause', JSON.stringify(this.timeForm.get("pause")?.value));
+    localStorage.setItem('Pause', JSON.stringify(this.timeForm?.get("pause")?.value));
   }
 
   private getSumOfHours() {
@@ -138,14 +163,15 @@ export class TimerComponent implements OnInit {
   private calculatePause() {
     this.extraPause = false;
     if ((this.timetoWorkDateString > this.getFormattedTimeString(6, 0)) && Number.parseInt(this.pauseArr[1]) < 30) {
-      this.pauseArr[1] = "30";
+      this.extraPause = true;
+      this.pausehinweis = "Ab 6 Stunden Arbeitszeit sind insgesamt 30 Minuten Pause vorgeschrieben."
     }
     if ((this.timetoWorkDateString > this.getFormattedTimeString(9, 0)) && Number.parseInt(this.pauseArr[1]) < 45) {
       this.extraPause = true;
-      this.pauseArr[1] = (Number.parseInt(this.pauseArr[1]) + 15).toString();
+      this.pausehinweis = "Ab 9 Stunden Arbeitszeit sind insgesamt 45 Minuten Pause vorgeschrieben."
     }
     this.pausenzeit = this.getFormattedTimeString(Number.parseInt(this.pauseArr[0]), Number.parseInt(this.pauseArr[1]));
-    this.timeForm.controls['pause'].setValue(this.pausenzeit);
+    this.timeForm?.controls['pause'].setValue(this.pausenzeit);
 
   }
 
@@ -154,15 +180,15 @@ export class TimerComponent implements OnInit {
       this.progressSpinnerValue = this.getSpinnerValue(startTimeArr);
       this.getRemainingTime();
     } else {
-      clearInterval(this.timerId);
+      clearInterval(this.timerIdOneMinute);
       this.getRemainingTime();
       this.progressSpinnerValue = 0;
       return;
     }
   }
 
-  private timeLoop(startTimeArr: string[]) {
-    this.timerId = setInterval(this.setSpinnerValue.bind(this), 60000, startTimeArr);
+  private timeLoopForOneMinute(startTimeArr: string[]) {
+    this.timerIdOneMinute = setInterval(this.setSpinnerValue.bind(this), 60000, startTimeArr);
   }
 
   private getFormattedTimeString(hour: number, minute: number) {
@@ -178,12 +204,5 @@ export class TimerComponent implements OnInit {
   private getRemainingTime() {
     let minutes = this.maxSpinnerValue - this.vergangen;
     this.remaining = this.getFormattedTimeString(0, minutes);
-  }
-
-  private getSeconds() {
-    if (this.startTime == undefined || this.endTime == undefined) {
-      return -1;
-    }
-    return Number.parseInt(((this.endTime!.getTime() - this.startTime!.getTime()) / 1000).toFixed(0));
   }
 }
