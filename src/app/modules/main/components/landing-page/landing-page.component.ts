@@ -1,14 +1,15 @@
 import {Component} from '@angular/core';
-import {Router} from "@angular/router";
 import {MainMenueService} from "../../service/main-menue.service";
+import {environment} from 'src/environments/environment';
 
 @Component({
   selector: 'app-landing-page',
   templateUrl: './landing-page.component.html',
 })
 export class LandingPageComponent {
+  appVersion: string = environment.appVersion;
 
-  constructor(private router: Router, public readonly mainMenueService: MainMenueService) {
+  constructor(public readonly mainMenueService: MainMenueService) {
   }
 
 }

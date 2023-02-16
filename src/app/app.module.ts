@@ -11,6 +11,7 @@ import {MatMenuModule} from '@angular/material/menu';
 import {MatToolbarModule} from '@angular/material/toolbar';
 import {TimerModulModule} from "./modules/timer-modul/timer-modul.module";
 import {MainModule} from "./modules/main/main.module";
+import {MatButtonModule} from "@angular/material/button";
 
 
 @NgModule({
@@ -33,6 +34,7 @@ import {MainModule} from "./modules/main/main.module";
     RamdomizeModulModule,
     TimerModulModule,
     MainModule,
+    MatButtonModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

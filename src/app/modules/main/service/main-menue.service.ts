@@ -1,5 +1,4 @@
 import {Injectable} from '@angular/core';
-import {Router} from "@angular/router";
 
 class Tab {
   text!: String;
@@ -18,9 +17,9 @@ export class MainMenueService {
 
   tabs: Tab[] = [];
 
-  constructor(router: Router) {
+  constructor() {
     this.tabs.push(
-      new Tab("Randomizer", "/"),
+      new Tab("Randomizer", "/randomizer"),
       new Tab("Timer", "/timer"),
       new Tab("Qrcode-Share", "/qr"),
       new Tab("Planningpoker", "/poker")

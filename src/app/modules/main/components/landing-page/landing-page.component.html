@@ -1,1 +1,17 @@
-<p>landing-page works!</p>
+<div class="p-3 d-flex justify-content-center">
+  <div class="p-3 d-flex justify-content-center">
+    <h4>Hi Willkommen, wähle ein Tool:</h4>
+  </div>
+  <div class="p-3 justify-content-center">
+    <div *ngFor="let tab of mainMenueService.tabs">
+      <button mat-button routerLink='/{{tab.route}}'>
+        <mat-icon>play_arrow</mat-icon>
+        {{tab.text}}
+      </button>
+    </div>
+  </div>
+</div>
+<div [ngStyle]="{'font-size': 80+'%','color': '#3d6065'}" class="p-3 d-flex justify-content-xxl-end">
+  <mat-icon>linear_scale</mat-icon>
+  <span class="ms-1">appversion: {{appVersion}}</span>
+</div>

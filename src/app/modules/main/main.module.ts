@@ -8,7 +8,9 @@ import {RamdomizeModulModule} from "../ramdomize-modul/ramdomize-modul.module";
 import {TimerModulModule} from "../timer-modul/timer-modul.module";
 import {QrShareModule} from "../qr-share/qr-share.module";
 import {PlanningPokerModule} from "../planning-poker/planning-poker.module";
-import { LandingPageComponent } from './components/landing-page/landing-page.component';
+import {LandingPageComponent} from './components/landing-page/landing-page.component';
+import {MatButtonModule} from "@angular/material/button";
+import {MatIconModule} from "@angular/material/icon";
 
 
 @NgModule({
@@ -28,6 +30,8 @@ import { LandingPageComponent } from './components/landing-page/landing-page.com
     QrShareModule,
     PlanningPokerModule,
     MatTabsModule,
+    MatButtonModule,
+    MatIconModule,
   ]
 })
 export class MainModule {
