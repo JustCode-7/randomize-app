@@ -1,4 +1,4 @@
-import {Component} from '@angular/core';
+import {Injectable} from '@angular/core';
 import {Router} from "@angular/router";
 
 class Tab {
@@ -11,15 +11,14 @@ class Tab {
   }
 }
 
-@Component({
-  selector: 'app-main-menue',
-  templateUrl: './main-menue.component.html',
-  styleUrls: ['./main-menue.component.scss']
+@Injectable({
+  providedIn: 'root'
 })
-export class MainMenueComponent {
+export class MainMenueService {
+
   tabs: Tab[] = [];
 
-  constructor(private router: Router) {
+  constructor(router: Router) {
     this.tabs.push(
       new Tab("Randomizer", "/"),
       new Tab("Timer", "/timer"),

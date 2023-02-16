@@ -61,12 +61,12 @@ export class GenerateQrCodeComponent {
   centerImageSrc = this.imageSrc
   centerImageHeight = this.imageHeight || 40
   centerImageWidth = this.imageWidth || 40
-  latest: string[] = [];
+  latestScans: string[] = [];
   private centerImage?: HTMLImageElement
 
   constructor(private renderer: Renderer2, private sanitizer: DomSanitizer, public qrcodeService: QrcodeServiceService) {
     this.value = "https://www.google.de/";
-    this.latest = this.getListFromLocalStorage() ?? [];
+    this.latestScans = this.getListFromLocalStorage() ?? [];
     this.generateQR();
   }
 
@@ -245,18 +245,18 @@ export class GenerateQrCodeComponent {
   }
 
   async generateQROnClick(value: string) {
-    if (this.latest.length > 5) {
-      this.latest.shift();
-      this.latest.push(value);
+    if (this.latestScans.length > 5) {
+      this.latestScans.shift();
+      this.latestScans.push(value);
     } else {
-      this.latest.push(value);
+      this.latestScans.push(value);
     }
-    this.saveInLocalSorage(this.latest);
+    this.saveInLocalSorage(this.latestScans);
     this.qrdata = value;
     await this.createQRCode()
   }
 
-  getItemFromLatest(value: string) {
+  getItemOfLatestScans(value: string) {
     this.value = value;
     this.generateQR()
   }
@@ -270,8 +270,8 @@ export class GenerateQrCodeComponent {
   }
 
   clearList() {
-    this.latest = [];
-    this.saveInLocalSorage(this.latest);
+    this.latestScans = [];
+    this.saveInLocalSorage(this.latestScans);
     window.location.reload();
   }
 
