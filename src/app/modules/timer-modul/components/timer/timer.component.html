@@ -6,10 +6,24 @@
       <div *ngFor="let form of forms; let i=index" class="d-flex justify-content-center my-2 mx-2 w-50 ">
         <mat-form-field appearance="fill">
           <mat-label>{{form}}</mat-label>
-          <input
-            formControlName="{{form}}"
-            matInput
-            type="time">
+          <div
+            class="d-flex flex-row justify-content-end"
+          >
+            <input
+              formControlName="{{form}}"
+              matInput
+              type="time">
+            <div *ngIf="form == 'pause'">
+              <div *ngIf="pauseActive">
+                <mat-spinner [diameter]="12" color="warn"></mat-spinner>
+              </div>
+              <button (click)="startPausetimer()"
+                      class="my-2 mx-2 " color="primary"
+                      mat-raised-button>
+                <mat-icon>{{iconSymbol}}</mat-icon>
+              </button>
+            </div>
+          </div>
         </mat-form-field>
       </div>
     </form>
