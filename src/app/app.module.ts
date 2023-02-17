@@ -12,6 +12,7 @@ import {MatToolbarModule} from '@angular/material/toolbar';
 import {TimerModulModule} from "./modules/timer-modul/timer-modul.module";
 import {MainModule} from "./modules/main/main.module";
 import {MatButtonModule} from "@angular/material/button";
+import {MatIconModule} from "@angular/material/icon";
 
 
 @NgModule({
@@ -35,6 +36,7 @@ import {MatButtonModule} from "@angular/material/button";
     TimerModulModule,
     MainModule,
     MatButtonModule,
+    MatIconModule,
   ],
   providers: [],
   bootstrap: [AppComponent]
