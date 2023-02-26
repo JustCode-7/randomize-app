@@ -42,6 +42,7 @@ export class TimerComponent implements OnInit {
     this.initForm();
     this.setInitialTimeValues();
     this.pauseActive = false;
+    Notification.requestPermission();
   }
 
   public calculateTotal() {
@@ -115,6 +116,18 @@ export class TimerComponent implements OnInit {
       return -1;
     }
     return Number.parseInt(((this.endTime!.getTime() - this.startTime!.getTime()) / 1000).toFixed(0));
+  }
+
+  getTimeToLeaveNotification() {
+    const time = new Date().toLocaleTimeString()
+    const text = `HEY! It's time to finish work and go home.`;
+    return new Notification(time + ': Just go home.', {body: text});
+  }
+
+  getDrinkMoveNotification() {
+    const time = new Date().toLocaleTimeString()
+    const text = `HEY! You should drink something and move a little.`;
+    return new Notification(time + ': Drink/Move', {body: text});
   }
 
   private timeLoopForOneSecond() {
@@ -204,5 +217,11 @@ export class TimerComponent implements OnInit {
   private getRemainingTime() {
     let minutes = this.maxSpinnerValue - this.vergangen;
     this.remaining = this.getFormattedTimeString(0, minutes);
+    if (this.vergangen != 0 && this.vergangen % 30 == 0) {
+      this.getDrinkMoveNotification()
+    }
+    if (minutes == 0) {
+      this.getTimeToLeaveNotification()
+    }
   }
 }
