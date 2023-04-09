@@ -10,9 +10,9 @@ export class MainMenueService {
   constructor() {
     this.tabs.push(
       new TabClass("Randomizer", "/randomizer"),
-      new TabClass("Timer", "/timer"),
-      new TabClass("Qrcode-Share", "/qr"),
-      new TabClass("Planningpoker", "/poker")
+      new TabClass("Work-Timer", "/timer"),
+      new TabClass("QR-Code", "/qr"),
+      new TabClass("Planning-Poker", "/poker")
     )
   }
 }
