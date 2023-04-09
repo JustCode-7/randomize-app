@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, OnDestroy, OnInit} from '@angular/core';
 import QrScanner from "qr-scanner";
 import {QrcodeServiceService} from "../../../../services/qrcode-service.service";
 import {MatLegacyDialogRef as MatDialogRef} from "@angular/material/legacy-dialog";
@@ -8,7 +8,7 @@ import {MatLegacyDialogRef as MatDialogRef} from "@angular/material/legacy-dialo
   templateUrl: './camera-view.component.html',
   styleUrls: ['./camera-view.component.scss'],
 })
-export class CameraViewComponent implements OnInit {
+export class CameraViewComponent implements OnInit, OnDestroy {
   localVideo: HTMLVideoElement = document.querySelector('#myVidPlayer')!;
   qrDataResult: string = "";
   qrScanner: any = null;
@@ -27,6 +27,10 @@ export class CameraViewComponent implements OnInit {
     }
   }
 
+  ngOnDestroy(): void {
+    this.closeWindowOrStopScan();
+  }
+
   streamVideo() {
     const video: HTMLVideoElement = document.querySelector('#myVidPlayer')!;
     //Core
@@ -36,6 +40,8 @@ export class CameraViewComponent implements OnInit {
         video.onloadedmetadata = (e) => {
           video.play();
           this.localVideo = video;
+          this.readQRFromVideo();
+          this.localVideo.click();
         };
       })
       .catch(() => {
@@ -71,8 +77,6 @@ export class CameraViewComponent implements OnInit {
   }
 
   private handleResult(result: QrScanner.ScanResult) {
-    // console.log(result)
-    // console.log(result.data)
     if (result != null && result.data !== "") {
       this.$stopAndOpen = "stop scan and open in new tab";
       this.$btnstopcolor = "btn-outline-success";
@@ -80,4 +84,6 @@ export class CameraViewComponent implements OnInit {
     }
     this.qrDataResult = result.data;
   }
+
+
 }
