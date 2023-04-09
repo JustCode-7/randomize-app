@@ -1,4 +1,4 @@
-<div class="container">
+<div class="justify-content-center">
   <div class="d-flex justify-content-center bd-highlight mb-3">
     <mat-form-field appearance="fill">
       <mat-label>Input for QR-Code generation</mat-label>
@@ -20,17 +20,18 @@
       open new tab with QR-code destination
     </button>
   </div>
-  <div class="d-flex flex-column justify-content-center p-3 my-2 mx-2 ">
-    <div class="p-3 my-2 mx-2 ">
+  <div class="d-flex justify-content-center">
+    <div class="justify-content-center p-3 my-2 mx-2 w-75">
       <mat-selection-list [multiple]="false">
-        <mat-list-option *ngFor="let item of latest" [value]="item"
-        >
-          <mat-list-item (click)="getItemFromLatest(item)">
+        <mat-list-option *ngFor="let item of latestScans" [value]="item">
+          <mat-list-item (click)="getItemOfLatestScans(item)" class="text-truncate">
             {{item}}
           </mat-list-item>
         </mat-list-option>
       </mat-selection-list>
     </div>
+  </div>
+  <div class="d-flex justify-content-center p-3 my-2 mx-2">
     <mat-divider></mat-divider>
     <button (click)="clearList()" mat-button>
       <mat-icon>delete</mat-icon>

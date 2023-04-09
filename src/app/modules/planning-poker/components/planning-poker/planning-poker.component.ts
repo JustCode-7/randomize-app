@@ -1,4 +1,5 @@
 import {Component, ElementRef, OnInit, ViewChild} from '@angular/core';
+import {PlanningPokerService} from "../../service/planning-poker.service";
 
 @Component({
   selector: 'app-planning-poker',
@@ -9,8 +10,11 @@ export class PlanningPokerComponent implements OnInit {
   cardArr: any[] = [];
 
   @ViewChild("myCard", {read: ElementRef}) myCard: ElementRef | undefined;
+  style_color2: string = 'width:70px; height:100px;background-color:blueviolet';
+  style_color1: string = 'width:70px; height:100px;background-color:blue';
+  style_card: string = 'width:70px; height:100px;';
 
-  constructor(myCard: ElementRef) {
+  constructor(myCard: ElementRef, public readonly pokerService: PlanningPokerService) {
   }
 
   ngOnInit(): void {
@@ -33,7 +37,15 @@ export class PlanningPokerComponent implements OnInit {
     return fiboArr.splice(1, fiboArr.length - 1);
   }
 
-  changeState(cardIndex: number) {
+  changeState(cardIndex: number, pickedCard: string) {
+    this.pokerService.setChoice(cardIndex, pickedCard);
+    if (this.style_card.includes(this.style_color2)) {
+      this.style_card = this.style_color1;
+    } else {
+      this.style_card = this.style_color2;
+    }
+    //TODO: use ElementRef to change a single card
+    
     // let i = cardIndex;
     // this.cardArr.forEach((card, index) => {
     //   this.myCard = card;

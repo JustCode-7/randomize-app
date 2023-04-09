@@ -7,6 +7,8 @@ import {MatInputModule} from "@angular/material/input";
 import {MatButtonModule} from "@angular/material/button";
 import {MatCardModule} from "@angular/material/card";
 import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
+import {MatIconModule} from "@angular/material/icon";
+import {MatBadgeModule} from "@angular/material/badge";
 
 
 @NgModule({
@@ -24,6 +26,8 @@ import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
     MatButtonModule,
     MatCardModule,
     MatProgressSpinnerModule,
+    MatIconModule,
+    MatBadgeModule,
   ]
 })
 export class TimerModulModule {

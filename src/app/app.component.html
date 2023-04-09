@@ -1,5 +1,9 @@
-<mat-toolbar class="mat-elevation-z6">
-  <span class="font-size-20" color="primary" mat-button>multitool</span>
+<mat-toolbar class="d-flex">
+  <button class="d-flex font-size-20" mat-button routerLink="/">multitool</button>
+  <span class="w-100"></span>
+  <div [ngStyle]="{'font-size': 50+'%','color': '#3d6065'}" class="p-3">
+    <mat-icon>linear_scale</mat-icon>
+    <span class="ms-1">{{appVersion}}</span>
+  </div>
 </mat-toolbar>
-<app-main-menue></app-main-menue>
-
+<app-tab-menue></app-tab-menue>

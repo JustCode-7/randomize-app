@@ -1,8 +1,10 @@
 <div class="d-flex justify-content-center bd-highlight mb-3 ">
   <div class="d-flex p-3 flex-wrap ">
     <div *ngFor="let card of cardArr; let i=index" class="d-flex justify-content-center p-1">
-      <mat-card #myard (click)="changeState(i)" class="m-1 p-1"
-                style="width:70px; height:100px;background-color:#7B1FA2">
+      <mat-card (click)="changeState(i, card)"
+                class="m-1 p-1"
+                style="{{style_card}}"
+      >
         <mat-card-subtitle>
           <mat-progress-bar color="warn" mode="indeterminate"></mat-progress-bar>
         </mat-card-subtitle>

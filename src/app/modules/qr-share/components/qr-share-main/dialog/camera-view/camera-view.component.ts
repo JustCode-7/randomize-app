@@ -22,7 +22,7 @@ export class CameraViewComponent implements OnInit {
   }
 
   ngOnInit() {
-    if ('mediaDevices' in navigator && navigator.mediaDevices.getUserMedia) {
+    if ('mediaDevices' in navigator) {
       this.streamVideo();
     }
   }
