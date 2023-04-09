@@ -1,28 +1,18 @@
 import {Injectable} from '@angular/core';
-
-class Tab {
-  text!: String;
-  route!: String;
-
-  constructor(text: string, route: string) {
-    this.text = text;
-    this.route = route;
-  }
-}
+import {TabClass} from "../../shared/tabclass";
 
 @Injectable({
   providedIn: 'root'
 })
 export class MainMenueService {
-
-  tabs: Tab[] = [];
+  tabs: TabClass[] = [];
 
   constructor() {
     this.tabs.push(
-      new Tab("Randomizer", "/randomizer"),
-      new Tab("Timer", "/timer"),
-      new Tab("Qrcode-Share", "/qr"),
-      new Tab("Planningpoker", "/poker")
+      new TabClass("Randomizer", "/randomizer"),
+      new TabClass("Timer", "/timer"),
+      new TabClass("Qrcode-Share", "/qr"),
+      new TabClass("Planningpoker", "/poker")
     )
   }
 }

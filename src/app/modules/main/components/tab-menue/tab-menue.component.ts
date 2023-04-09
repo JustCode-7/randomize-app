@@ -1,5 +1,4 @@
 import {Component} from '@angular/core';
-import {Router} from "@angular/router";
 import {MainMenueService} from "../../service/main-menue.service";
 
 @Component({
@@ -8,6 +7,6 @@ import {MainMenueService} from "../../service/main-menue.service";
 })
 export class TabMenueComponent {
 
-  constructor(private router: Router, public readonly mainMenueService: MainMenueService) {
+  constructor(public readonly mainMenueService: MainMenueService) {
   }
 }
