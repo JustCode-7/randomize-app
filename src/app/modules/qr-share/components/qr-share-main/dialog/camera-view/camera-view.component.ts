@@ -1,7 +1,7 @@
 import {Component, OnDestroy, OnInit} from '@angular/core';
 import QrScanner from "qr-scanner";
 import {QrcodeServiceService} from "../../../../services/qrcode-service.service";
-import {MatLegacyDialogRef as MatDialogRef} from "@angular/material/legacy-dialog";
+import {MatDialogRef} from "@angular/material/dialog";
 
 @Component({
   selector: 'app-camera-view',

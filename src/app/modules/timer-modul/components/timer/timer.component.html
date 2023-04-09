@@ -13,7 +13,7 @@
               formControlName="{{form}}"
               matInput
               type="time">
-            <div *ngIf="form == 'pause'">
+            <div *ngIf="form === 'pause'">
               <div *ngIf="pauseActive" matBadge="">
                 <mat-spinner [diameter]="12" color="warn"></mat-spinner>
                 <mat-hint

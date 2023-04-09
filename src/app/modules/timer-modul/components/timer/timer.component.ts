@@ -1,8 +1,8 @@
 import {Component, OnInit} from '@angular/core';
-import {UntypedFormBuilder, UntypedFormGroup, Validators} from "@angular/forms";
+import {FormBuilder, UntypedFormGroup, Validators} from "@angular/forms";
 import {ThemePalette} from "@angular/material/core";
 import {formatDate} from "@angular/common";
-import {LegacyProgressSpinnerMode as ProgressSpinnerMode} from '@angular/material/legacy-progress-spinner';
+import {ProgressSpinnerMode} from "@angular/material/progress-spinner";
 
 @Component({
   selector: 'app-timer',
@@ -35,7 +35,7 @@ export class TimerComponent implements OnInit {
   pauseActiveForSeconds!: any;
   pausehinweis: any;
 
-  constructor(private fb: UntypedFormBuilder) {
+  constructor(private fb: FormBuilder) {
   }
 
   ngOnInit(): void {

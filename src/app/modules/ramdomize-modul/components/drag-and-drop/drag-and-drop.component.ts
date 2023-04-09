@@ -1,7 +1,7 @@
 import {Component, HostListener} from '@angular/core';
-import {MatLegacyDialog as MatDialog} from '@angular/material/legacy-dialog';
 import {ImportDialogTemplateComponent} from '../../dialog-templates/import-dialog-template.component';
 import {RandomServiceService} from '../../services/random-service.service';
+import {MatDialog} from "@angular/material/dialog";
 
 
 @Component({

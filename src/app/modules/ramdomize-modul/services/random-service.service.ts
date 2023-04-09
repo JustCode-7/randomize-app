@@ -1,6 +1,6 @@
 import {Injectable} from '@angular/core';
-import {MatLegacyDialog as MatDialog, MatLegacyDialogConfig as MatDialogConfig} from '@angular/material/legacy-dialog';
 import {RandomizedNameDialogComponent} from '../dialog-templates/randomized-name-dialog.component';
+import {MatDialog, MatDialogConfig} from "@angular/material/dialog";
 
 @Injectable({
   providedIn: 'root'
