@@ -1,47 +1,56 @@
-<div class="p-3 d-flex justify-content-center">
-  <div class="p-3 justify-content-center">
-    <form (ngSubmit)="calculateTotal()"
-          [formGroup]="timeForm!"
-          class="form-horizontal">
-      <div *ngFor="let form of forms; let i=index" class="d-flex justify-content-center my-2 mx-2 w-50 ">
-        <mat-form-field appearance="fill">
-          <mat-label>{{form}}</mat-label>
-          <div
-            class="d-flex flex-row justify-content-end"
-          >
-            <input
-              formControlName="{{form}}"
-              matInput
-              type="time">
-            <div *ngIf="form === 'pause'">
-              <div *ngIf="pauseActive" matBadge="">
-                <mat-spinner [diameter]="12" color="warn"></mat-spinner>
-                <mat-hint
-                >{{pauseActiveForSeconds}}</mat-hint>
-              </div>
+<div class="d-flex justify-content-center p-3 ">
+  <form (ngSubmit)="calculateTotal()"
+        [formGroup]="timeForm!"
+        class="form-horizontal vw-25">
+    <div *ngFor="let form of forms; let i=index">
+      <mat-form-field appearance="fill">
+        <mat-label>{{form}}</mat-label>
+        <div
+          class="d-flex flex-row"
+        >
+          <input *ngIf="form !== 'pause'"
+                 formControlName="{{form}}"
+                 matInput
+                 type="time">
+          <div *ngIf="form === 'pause'" class="d-flex flex-column justify-content-end">
+            <div class="d-flex flex-row justify-content-end">
+              <input
+                formControlName="{{form}}"
+                matInput
+                type="time">
               <button (click)="startPausetimer()"
-                      class="my-2 mx-2 " color="primary"
-                      mat-raised-button>
+                      color="primary"
+                      mat-mini-fab>
                 <mat-icon>{{iconSymbol}}</mat-icon>
               </button>
+              <div *ngIf="pauseActive" matBadge="">
+                <mat-spinner [diameter]="12" color="warn"></mat-spinner>
+                <mat-hint [ngStyle]="{'color': '#880808'}"
+                >{{pauseActiveForSeconds}}</mat-hint>
+              </div>
             </div>
           </div>
-          <mat-hint *ngIf="extraPause===true && form == 'pause'" [ngStyle]="{'font-size': 90+'%','color': '#880808'}"
-                    class="justify-content-center">
-            {{pausehinweis}}
-          </mat-hint>
-        </mat-form-field>
-      </div>
-    </form>
-    <div class="d-flex flex-column justify-content-center p-3 my-2 mx-2 ">
-      <button (click)="calculateTotal()"
-              class="my-2 mx-2 w-50" color="primary"
-              mat-raised-button>
-        calculate
-      </button>
+        </div>
+      </mat-form-field>
     </div>
-    <div *ngIf="progressSpinnerValue!==0" class="d-flex justify-content-center p-3 my-2 mx-2 w-50">
-      <mat-card>
+  </form>
+</div>
+<div class="d-flex justify-content-center p-3 vw-25 flex-column vw-25">
+  <div class="d-flex justify-content-center vw-25">
+    <mat-hint *ngIf="extraPause===true" [ngStyle]="{'color': '#880808'}">
+      {{pausehinweis}}
+    </mat-hint>
+  </div>
+  <div class="d-flex justify-content-center p-3 my-2 mx-2 vw-25">
+    <button (click)="calculateTotal()"
+            color="primary"
+            mat-raised-button>
+      calculate
+    </button>
+  </div>
+  <div class="my-2 mx-2 vw-25">
+    <div *ngIf="progressSpinnerValue!==0" class="d-flex justify-content-center p-3 my-2 mx-2 vw-25">
+      <mat-card class="position-relative justify-content-center p-3">
         <mat-card-title>Feierabend:<br> {{feierabendDateString}}</mat-card-title>
         <mat-card-content>
           <div class="position-relative justify-content-center p-3">
