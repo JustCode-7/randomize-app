@@ -1,6 +1,6 @@
-import { Injectable } from '@angular/core';
-import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
-import { RandomizedNameDialogComponent } from '../dialog-templates/randomized-name-dialog.component';
+import {Injectable} from '@angular/core';
+import {MatLegacyDialog as MatDialog, MatLegacyDialogConfig as MatDialogConfig} from '@angular/material/legacy-dialog';
+import {RandomizedNameDialogComponent} from '../dialog-templates/randomized-name-dialog.component';
 
 @Injectable({
   providedIn: 'root'
@@ -34,10 +34,6 @@ export class RandomServiceService {
 
   public getItemFromCache() {
     return this.localStorageGetItemByKey();
-  }
-
-  private localStorageGetItemByKey() {
-    return localStorage.getItem(this.jsonKey);
   }
 
   public removeItem(key: string) {
@@ -85,5 +81,9 @@ export class RandomServiceService {
     }
 
 
+  }
+
+  private localStorageGetItemByKey() {
+    return localStorage.getItem(this.jsonKey);
   }
 }

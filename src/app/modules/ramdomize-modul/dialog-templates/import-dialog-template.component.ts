@@ -1,6 +1,5 @@
-import { Component } from '@angular/core';
-import { MatDialogRef } from '@angular/material/dialog';
-import { RandomServiceService } from '../services/random-service.service';
+import {Component} from '@angular/core';
+import {RandomServiceService} from '../services/random-service.service';
 
 @Component({
   selector: 'app-import-dialog',
@@ -19,8 +18,9 @@ export class ImportDialogTemplateComponent {
   line: any = "line";
   csv: any = "csv";
   wild: any = "wild";
+
   constructor(public randomService:
-    RandomServiceService
+                RandomServiceService
   ) {
   }
 }

@@ -1,7 +1,7 @@
-import { Component, HostListener } from '@angular/core';
-import { MatDialog } from '@angular/material/dialog';
-import { ImportDialogTemplateComponent } from '../../dialog-templates/import-dialog-template.component';
-import { RandomServiceService } from '../../services/random-service.service';
+import {Component, HostListener} from '@angular/core';
+import {MatLegacyDialog as MatDialog} from '@angular/material/legacy-dialog';
+import {ImportDialogTemplateComponent} from '../../dialog-templates/import-dialog-template.component';
+import {RandomServiceService} from '../../services/random-service.service';
 
 
 @Component({
@@ -16,7 +16,7 @@ export class DragAndDropComponent {
   dialog: any;
 
   constructor(randomizedService: RandomServiceService,
-    dialog: MatDialog) {
+              dialog: MatDialog) {
     this.randomizedService = randomizedService;
     this.fileReader = new FileReader();
     this.dialog = dialog;
@@ -28,10 +28,20 @@ export class DragAndDropComponent {
     // Dragover listener --> maybe color-change or something like this
   }
 
-  @HostListener('drop', ['$event']) public ondrop(evt: { preventDefault: () => void; stopPropagation: () => void; dataTransfer: { files: any; }; }) {
+  @HostListener('drop', ['$event'])
+  public ondrop(evt: { preventDefault: () => void; stopPropagation: () => void; dataTransfer: { files: any; }; }) {
     evt.preventDefault();
     evt.stopPropagation();
     this.readFileInput(evt.dataTransfer.files);
+  }
+
+  openExplorerForfileImport(file: HTMLInputElement) {
+    file.click();
+    file.onchange = () => {
+      const selectedFile = file.files;
+      this.readFileInput(selectedFile);
+    }
+
   }
 
   private readFileInput(files: any) {
@@ -49,9 +59,10 @@ export class DragAndDropComponent {
 
     }
   }
+
   private notifyService() {
     this.randomizedService.clearNames();
-    this.randomizedService._names.push(... this.names);
+    this.randomizedService._names.push(...this.names);
     this.randomizedService.setItemsToCache();
   }
 
@@ -67,15 +78,6 @@ export class DragAndDropComponent {
       arr = this.fileReader.result?.valueOf().toString().split(/[\s,]+/)!;
     }
     return arr;
-  }
-
-  openExplorerForfileImport(file: HTMLInputElement) {
-    file.click();
-    file.onchange = () => {
-      const selectedFile = file.files;
-      this.readFileInput(selectedFile);
-    }
-
   }
 
 }

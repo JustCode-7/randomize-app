@@ -1,5 +1,5 @@
 import {Injectable} from '@angular/core';
-import {MatDialog} from "@angular/material/dialog";
+import {MatLegacyDialog as MatDialog} from "@angular/material/legacy-dialog";
 import {CameraViewComponent} from "../components/qr-share-main/dialog/camera-view/camera-view.component";
 
 @Injectable({
