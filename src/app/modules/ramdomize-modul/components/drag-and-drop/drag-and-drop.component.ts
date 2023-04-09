@@ -7,7 +7,6 @@ import {MatDialog} from "@angular/material/dialog";
 @Component({
   selector: 'app-drag-and-drop',
   templateUrl: './drag-and-drop.component.html',
-  styleUrls: ['./drag-and-drop.component.scss']
 })
 export class DragAndDropComponent {
   names: string[] = [];
@@ -41,7 +40,6 @@ export class DragAndDropComponent {
       const selectedFile = file.files;
       this.readFileInput(selectedFile);
     }
-
   }
 
   private readFileInput(files: any) {

@@ -7,10 +7,8 @@ import {ProgressSpinnerMode} from "@angular/material/progress-spinner";
 @Component({
   selector: 'app-timer',
   templateUrl: './timer.component.html',
-  styleUrls: ['./timer.component.scss']
 })
 export class TimerComponent implements OnInit {
-  //TODO: TrinkUhr
   timeForm!: UntypedFormGroup;
   forms?: string[];
   feierabendDateString: string = "feierabend";

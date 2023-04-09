@@ -1,10 +1,9 @@
-import { Component } from '@angular/core';
-import { RandomServiceService } from '../../services/random-service.service';
+import {Component} from '@angular/core';
+import {RandomServiceService} from '../../services/random-service.service';
 
 @Component({
   selector: 'app-input-table',
   templateUrl: './input-table.component.html',
-  styleUrls: ['./input-table.component.scss']
 })
 export class InputTableComponent {
   value = 'Fill me with text';

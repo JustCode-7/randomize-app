@@ -1,6 +1,6 @@
 import {Component, OnDestroy, OnInit} from '@angular/core';
 import QrScanner from "qr-scanner";
-import {QrcodeServiceService} from "../../../../services/qrcode-service.service";
+import {QrcodeShareService} from "../../../services/qrcode-share.service";
 import {MatDialogRef} from "@angular/material/dialog";
 
 @Component({
@@ -17,7 +17,7 @@ export class CameraViewComponent implements OnInit, OnDestroy {
   $btnstopcolor: any = "btn-info";
   $scannerNotNeeded = false;
 
-  constructor(public qrcodeService: QrcodeServiceService, private dialogRef: MatDialogRef<CameraViewComponent>) {
+  constructor(public qrcodeService: QrcodeShareService, private dialogRef: MatDialogRef<CameraViewComponent>) {
   }
 
   ngOnInit() {

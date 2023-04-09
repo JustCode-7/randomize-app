@@ -1,11 +1,15 @@
 import {Injectable} from '@angular/core';
-import {CameraViewComponent} from "../components/qr-share-main/dialog/camera-view/camera-view.component";
+import {CameraViewComponent} from "../components/cam-scan-qr/camera-view/camera-view.component";
 import {MatDialog} from "@angular/material/dialog";
+import QrScanner from 'qr-scanner'
 
 @Injectable({
   providedIn: 'root'
 })
-export class QrcodeServiceService {
+export class QrcodeShareService {
+  value?: string;
+  latestScans: string[] = [];
+
   constructor(public dialog: MatDialog) {
   }
 
@@ -30,7 +34,6 @@ export class QrcodeServiceService {
     } else {
       this.dialog.open(CameraViewComponent)
     }
-
   }
 
   isMobile() {
@@ -41,5 +44,20 @@ export class QrcodeServiceService {
     return check;
   };
 
+  openExplorerForfileImport(file: HTMLInputElement) {
+    file.click();
+    file.onchange = () => {
+      const selectedFile = file.files;
+      this.readFileInput(selectedFile);
+    }
+  }
 
+  private readFileInput(files: any) {
+    if (files.length > 0) {
+      QrScanner.scanImage(files[0]).then(result => {
+        this.latestScans.push(result)
+      })
+        .catch(error => console.log(error || 'No QR code found.'));
+    }
+  }
 }

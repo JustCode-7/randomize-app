@@ -14,7 +14,7 @@ import {DomSanitizer, SafeUrl} from "@angular/platform-browser"
 import QRCode from 'qrcode'
 
 import {QRCodeConfigType, QRCodeElementType, QRCodeErrorCorrectionLevel, QRCodeVersion,} from "./types"
-import {QrcodeServiceService} from "../../services/qrcode-service.service";
+import {QrcodeShareService} from "../../services/qrcode-share.service";
 
 @Component({
   selector: 'app-generate-qr-code',
@@ -63,7 +63,7 @@ export class GenerateQrCodeComponent {
   latestScans: string[] = [];
   private centerImage?: HTMLImageElement
 
-  constructor(private renderer: Renderer2, private sanitizer: DomSanitizer, public qrcodeService: QrcodeServiceService) {
+  constructor(private renderer: Renderer2, private sanitizer: DomSanitizer, public qrcodeService: QrcodeShareService) {
     this.value = "https://www.google.de/";
     this.latestScans = this.getListFromLocalStorage() ?? [];
     this.generateQR();

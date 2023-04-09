@@ -1,2 +1,15 @@
-<app-generate-qr-code></app-generate-qr-code>
-<app-cam-scan-qr [qrcodeService]="qrcodeService"></app-cam-scan-qr>
+<mat-tab-group fitInkBarToContent>
+  <mat-tab label="Generate QR">
+    <app-generate-qr-code></app-generate-qr-code>
+  </mat-tab>
+  <mat-tab label="Scan by Camera">
+    <app-cam-scan-qr></app-cam-scan-qr>
+  </mat-tab>
+  <mat-tab label="Scan from Image">
+    <app-scan-qr-from-image></app-scan-qr-from-image>
+  </mat-tab>
+</mat-tab-group>
+
+
+
+
