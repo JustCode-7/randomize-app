@@ -6,7 +6,6 @@ import {MatDialogRef} from "@angular/material/dialog";
 @Component({
   selector: 'app-camera-view',
   templateUrl: './camera-view.component.html',
-  styleUrls: ['./camera-view.component.scss'],
 })
 export class CameraViewComponent implements OnInit, OnDestroy {
   localVideo: HTMLVideoElement = document.querySelector('#myVidPlayer')!;
@@ -37,7 +36,7 @@ export class CameraViewComponent implements OnInit, OnDestroy {
     window.navigator.mediaDevices.getUserMedia({video: true})
       .then(stream => {
         video.srcObject = stream;
-        video.onloadedmetadata = (e) => {
+        video.onloadedmetadata = () => {
           video.play();
           this.localVideo = video;
           this.readQRFromVideo();

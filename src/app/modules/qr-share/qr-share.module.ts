@@ -14,13 +14,15 @@ import {MatDialogModule} from "@angular/material/dialog";
 import {MatRadioModule} from "@angular/material/radio";
 import {MatListModule} from "@angular/material/list";
 import {MatCardModule} from "@angular/material/card";
+import {CamScanQrComponent} from './components/qr-share-main/cam-scan-qr/cam-scan-qr.component';
 
 
 @NgModule({
   declarations: [
     QrShareMainComponent,
     GenerateQrCodeComponent,
-    CameraViewComponent
+    CameraViewComponent,
+    CamScanQrComponent
   ],
   exports: [
     QrShareMainComponent

@@ -19,7 +19,6 @@ import {QrcodeServiceService} from "../../services/qrcode-service.service";
 @Component({
   selector: 'app-generate-qr-code',
   templateUrl: 'generate-qr-code.component.html',
-  styleUrls: ['./generate-qr-code.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class GenerateQrCodeComponent {

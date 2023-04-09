@@ -1,7 +1,2 @@
-<app-generate-qr-code>
-</app-generate-qr-code>
-<div class="d-flex justify-content-center p-3 my-2 mx-2 ">
-  <button (click)="qrcodeService.scanQRCodeWithCam()" color="primary" mat-raised-button>
-    scan QR-code with camera
-  </button>
-</div>
+<app-generate-qr-code></app-generate-qr-code>
+<app-cam-scan-qr [qrcodeService]="qrcodeService"></app-cam-scan-qr>
