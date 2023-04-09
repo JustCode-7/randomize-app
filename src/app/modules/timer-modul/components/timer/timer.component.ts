@@ -1,5 +1,5 @@
 import {Component, OnInit} from '@angular/core';
-import {FormBuilder, FormGroup, Validators} from "@angular/forms";
+import {UntypedFormBuilder, UntypedFormGroup, Validators} from "@angular/forms";
 import {ThemePalette} from "@angular/material/core";
 import {formatDate} from "@angular/common";
 import {ProgressSpinnerMode} from '@angular/material/progress-spinner';
@@ -11,7 +11,7 @@ import {ProgressSpinnerMode} from '@angular/material/progress-spinner';
 })
 export class TimerComponent implements OnInit {
   //TODO: TrinkUhr
-  timeForm!: FormGroup;
+  timeForm!: UntypedFormGroup;
   forms?: string[];
   feierabendDateString: string = "feierabend";
   pausenzeit: string = "pausenzeit";
@@ -35,7 +35,7 @@ export class TimerComponent implements OnInit {
   pauseActiveForSeconds!: any;
   pausehinweis: any;
 
-  constructor(private fb: FormBuilder) {
+  constructor(private fb: UntypedFormBuilder) {
   }
 
   ngOnInit(): void {

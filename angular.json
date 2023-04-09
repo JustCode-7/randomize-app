@@ -115,5 +115,7 @@
       }
     }
   },
-  "defaultProject": "randomize-app"
+  "cli": {
+    "analytics": false
+  }
 }
