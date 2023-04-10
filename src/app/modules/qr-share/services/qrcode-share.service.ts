@@ -9,8 +9,23 @@ import QrScanner from 'qr-scanner'
 export class QrcodeShareService {
   value?: string;
   latestScans: string[] = [];
+  iconcolor: string = "warn";
 
   constructor(public dialog: MatDialog) {
+  }
+
+  onPaste(e: any) {
+    const items = (e.clipboardData || e.originalEvent.clipboardData).items;
+    let blob = null;
+    for (const item of items) {
+      if (item.type.indexOf('image') === 0) {
+        blob = item.getAsFile();
+        QrScanner.scanImage(blob).then(result => {
+          this.latestScans.push(result)
+          this.iconcolor = "accent";
+        })
+      }
+    }
   }
 
   openNewTabWithQRValue(value: string) {
@@ -20,6 +35,7 @@ export class QrcodeShareService {
     } else {
       window.open("https://www.google.de/search?q=" + value, '_blank')!.focus();
     }
+    this.iconcolor = "warn";
   }
 
   scanQRCodeWithCam() {

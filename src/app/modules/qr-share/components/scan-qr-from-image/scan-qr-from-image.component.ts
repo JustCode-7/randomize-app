@@ -6,6 +6,9 @@ import {QrcodeShareService} from "../../services/qrcode-share.service";
   templateUrl: './scan-qr-from-image.component.html',
 })
 export class ScanQrFromImageComponent {
+
+
   constructor(public qrShareService: QrcodeShareService) {
   }
+
 }

@@ -126,6 +126,7 @@ export class TimerComponent implements OnInit {
     const time = new Date().toLocaleTimeString()
     const text = `HEY! You should drink something and move a little.`;
     return new Notification(time + ': Drink/Move', {body: text});
+    //TODO: Notification.close()
   }
 
   private timeLoopForOneSecond() {
