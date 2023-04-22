@@ -2,6 +2,7 @@ import {Injectable} from '@angular/core';
 import {CameraViewComponent} from "../components/cam-scan-qr/camera-view/camera-view.component";
 import {MatDialog} from "@angular/material/dialog";
 import QrScanner from 'qr-scanner'
+import {Utility} from "../../shared/utility/utility";
 
 @Injectable({
   providedIn: 'root'
@@ -20,10 +21,16 @@ export class QrcodeShareService {
     for (const item of items) {
       if (item.type.indexOf('image') === 0) {
         blob = item.getAsFile();
-        QrScanner.scanImage(blob).then(result => {
-          this.latestScans.push(result)
-          this.iconcolor = "accent";
-        })
+        QrScanner.scanImage(blob,
+        ).then(result => {
+            this.latestScans.push(result)
+            this.iconcolor = "accent";
+          }
+        )
+          .finally(async () => {
+            await Utility.delay(5000);
+            this.iconcolor = "warn"
+          })
       }
     }
   }
@@ -70,7 +77,8 @@ export class QrcodeShareService {
 
   private readFileInput(files: any) {
     if (files.length > 0) {
-      QrScanner.scanImage(files[0]).then(result => {
+      QrScanner.scanImage(files[0],
+      ).then(result => {
         this.latestScans.push(result)
       })
         .catch(error => console.log(error || 'No QR code found.'));

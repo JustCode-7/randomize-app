@@ -3,6 +3,7 @@ import {FormBuilder, UntypedFormGroup, Validators} from "@angular/forms";
 import {ThemePalette} from "@angular/material/core";
 import {formatDate} from "@angular/common";
 import {ProgressSpinnerMode} from "@angular/material/progress-spinner";
+import {Utility} from "../../../shared/utility/utility";
 
 @Component({
   selector: 'app-timer',
@@ -213,14 +214,18 @@ export class TimerComponent implements OnInit {
     this.maxSpinnerValue = workduration + pauseduration;
   }
 
-  private getRemainingTime() {
+  private async getRemainingTime() {
     let minutes = this.maxSpinnerValue - this.vergangen;
     this.remaining = this.getFormattedTimeString(0, minutes);
     if (this.vergangen != 0 && this.vergangen % 30 == 0) {
-      this.getDrinkMoveNotification()
+      const notifDrink = this.getDrinkMoveNotification()
+      await Utility.delay(3000)
+      notifDrink.close();
     }
     if (minutes == 0) {
-      this.getTimeToLeaveNotification()
+      const notifiLeave = this.getTimeToLeaveNotification()
+      await Utility.delay(3000)
+      notifiLeave.close();
     }
   }
 }
