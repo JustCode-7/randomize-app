@@ -1,26 +1,30 @@
 <div class="container mb-2">
-    <mat-accordion>
-        <mat-expansion-panel>
-            <mat-expansion-panel-header>
-                <mat-panel-title>
-                    file import
-                </mat-panel-title>
-                <mat-panel-description>
-                    expand to manage text files
-                </mat-panel-description>
-            </mat-expansion-panel-header>
-            <div class="d-flex flex-column bd-highlight mb-3">
-                <mat-card class="m-1">
-                    <mat-card-subtitle (click)="openExplorerForfileImport(file)">
-                        click to open
-                    </mat-card-subtitle>
-                    <mat-card-title>Drag and Drop
-                        txt-files here
-                        <mat-icon><img src="assets/icons/icons8-32.ico" alt="image"></mat-icon>
-                    </mat-card-title>
-                    <input type="file" #file [multiple]="false" style="display:none" />
-                </mat-card>
-            </div>
-        </mat-expansion-panel>
-    </mat-accordion>
+  <mat-accordion>
+    <mat-expansion-panel>
+      <mat-expansion-panel-header>
+        <mat-panel-description>
+          import text files
+        </mat-panel-description>
+      </mat-expansion-panel-header>
+      <div class="d-flex flex-column bd-highlight mb-3">
+        <mat-card class="m-1 justify-content-center no-warp flex-row">
+          <div class="d-flex justify-content-center">
+            <button mat-icon-button>
+              <mat-icon (click)="openExplorerForfileImport(file)">explore</mat-icon>
+            </button>
+            <mat-hint>click to open explorer</mat-hint>
+          </div>
+        </mat-card>
+        <mat-card style="background-color: orange">
+          <div class="d-flex justify-content-center">
+            <input #file [multiple]="false" style="display:none" type="file"/>
+            <mat-icon class="w-75">drag_indicator</mat-icon>
+            <mat-hint>drag and drop your text-files here</mat-hint>
+          </div>
+
+        </mat-card>
+
+      </div>
+    </mat-expansion-panel>
+  </mat-accordion>
 </div>
