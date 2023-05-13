@@ -1,0 +1,7 @@
+<h3 mat-dialog-title>Pause-List</h3>
+<div *ngFor="let item of timerservice.pauseList" class="d-flex flex-column" mat-dialog-content>
+  <div *ngIf="timerservice.pauseList !== []; else keinePause">
+    {{item}}
+  </div>
+</div>
+<ng-template #keinePause> keine Pause gemacht heute</ng-template>

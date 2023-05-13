@@ -1,71 +1,20 @@
-<div class="d-flex justify-content-center p-3 ">
-  <form (ngSubmit)="calculateTotal()"
-        [formGroup]="timeForm!"
-        class="form-horizontal vw-25">
-    <div *ngFor="let form of forms; let i=index">
-      <mat-form-field appearance="fill">
-        <mat-label>{{form}}</mat-label>
-        <div
-          class="d-flex flex-row"
-        >
-          <input *ngIf="form !== 'pause'"
-                 formControlName="{{form}}"
-                 matInput
-                 type="time">
-          <div *ngIf="form === 'pause'" class="d-flex flex-column justify-content-end">
-            <div class="d-flex flex-row justify-content-end">
-              <input
-                formControlName="{{form}}"
-                matInput
-                type="time">
-              <button (click)="startPausetimer()"
-                      color="primary"
-                      mat-mini-fab>
-                <mat-icon>{{iconSymbol}}</mat-icon>
-              </button>
-              <div *ngIf="pauseActive" matBadge="">
-                <mat-spinner [diameter]="12" color="warn"></mat-spinner>
-                <mat-hint [ngStyle]="{'color': '#880808'}"
-                >{{pauseActiveForSeconds}}</mat-hint>
-              </div>
-            </div>
-          </div>
-        </div>
-      </mat-form-field>
-    </div>
-  </form>
-</div>
+<app-timer-imput-form></app-timer-imput-form>
 <div class="d-flex justify-content-center p-3 vw-25 flex-column vw-25">
   <div class="d-flex justify-content-center vw-25">
-    <mat-hint *ngIf="extraPause===true" [ngStyle]="{'color': '#880808'}">
-      {{pausehinweis}}
+    <mat-hint *ngIf="timerservice.extraPause===true" [ngStyle]="{'color': '#880808'}">
+      {{timerservice.pausehinweis}}
     </mat-hint>
   </div>
   <div class="d-flex justify-content-center p-3 my-2 mx-2 vw-25">
-    <button (click)="calculateTotal()"
+    <button (click)="timerservice.calculateTotal()"
             color="primary"
             mat-raised-button>
       calculate
     </button>
   </div>
-  <div class="my-2 mx-2 vw-25">
-    <div *ngIf="progressSpinnerValue!==0" class="d-flex justify-content-center p-3 my-2 mx-2 vw-25">
-      <mat-card class="position-relative justify-content-center p-3">
-        <mat-card-title>Feierabend:<br> {{feierabendDateString}}</mat-card-title>
-        <mat-card-content>
-          <div class="position-relative justify-content-center p-3">
-            <mat-progress-spinner *ngIf="progressSpinnerValue!==0"
-                                  [color]="progressSpinnerColor"
-                                  [mode]="progressSpinnerMode"
-                                  [value]="progressSpinnerValue"
-            >
-            </mat-progress-spinner>
-            <div class="justify-content-center position-absolute top-50 start-50 translate-middle"
-            >{{remaining}}<br>left
-            </div>
-          </div>
-        </mat-card-content>
-      </mat-card>
-    </div>
-  </div>
+  <app-timer-progress-view [feierabendDateString]="timerservice.feierabendDateString"
+                           [progressSpinnerColor]="timerservice.progressSpinnerColor"
+                           [progressSpinnerMode]="timerservice.progressSpinnerMode"
+                           [progressSpinnerValue]="timerservice.progressSpinnerValue"
+                           [remaining]="timerservice.remaining"></app-timer-progress-view>
 </div>
