@@ -13,6 +13,8 @@ export class DragAndDropComponent {
   randomizedService: RandomServiceService;
   fileReader: FileReader;
   dialog: any;
+  dragAndDropColor: string = "orange";
+  protected readonly visualViewport = visualViewport;
 
   constructor(randomizedService: RandomServiceService,
               dialog: MatDialog) {
@@ -25,6 +27,17 @@ export class DragAndDropComponent {
     evt.preventDefault();
     evt.stopPropagation();
     // Dragover listener --> maybe color-change or something like this
+    this.dragAndDropColor = "green";
+  }
+
+  @HostListener('dragleave', ['$event']) onDragLeave(evt: {
+    preventDefault: () => void;
+    stopPropagation: () => void;
+  }) {
+    evt.preventDefault();
+    evt.stopPropagation();
+    // Dragover listener --> maybe color-change or something like this
+    this.dragAndDropColor = "orange";
   }
 
   @HostListener('drop', ['$event'])
@@ -47,7 +60,7 @@ export class DragAndDropComponent {
       const matDialogRef = this.dialog.open(ImportDialogTemplateComponent);
       let file = files[0];
       this.fileReader.readAsText(file);
-      this.fileReader.onload = (e) => {
+      this.fileReader.onload = () => {
         matDialogRef.afterClosed().subscribe(() => {
           this.names = this.getFileContentAsStringArray(this.randomizedService._style)!;
           this.notifyService();
@@ -77,5 +90,4 @@ export class DragAndDropComponent {
     }
     return arr;
   }
-
 }

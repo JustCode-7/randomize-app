@@ -1,26 +1,24 @@
-import {Component, OnInit} from '@angular/core';
+import {Component} from '@angular/core';
 import {RandomServiceService} from '../../services/random-service.service';
 
 @Component({
-  selector: 'app-output-table',
-  templateUrl: './output-table.component.html',
+  selector: 'app-input-table',
+  templateUrl: './user-input.component.html',
 })
-export class OutputTableComponent implements OnInit {
-
+export class UserInputComponent {
   value = 'Fill me with text';
   index: number = 0;
-  ind1 = 1;
   randomizedService: RandomServiceService;
 
   constructor(randomizedService: RandomServiceService) {
     this.randomizedService = randomizedService;
   }
 
-  ngOnInit(): void {
-    if (this.randomizedService.getItemFromCache()?.length == 0) {
+  addName(name: string) {
+    if (name.length > 0) {
+      this.randomizedService._names.push(name);
       this.randomizedService.setItemsToCache();
-    } else {
-      this.randomizedService.reloadFromCache();
+      this.value = "";
     }
   }
 }

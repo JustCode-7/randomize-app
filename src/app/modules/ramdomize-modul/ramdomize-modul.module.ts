@@ -1,12 +1,11 @@
 import {NgModule} from '@angular/core';
 import {CommonModule} from '@angular/common';
-import {RandomizeInputComponent} from './randomize-input/randomize-input.component';
 import {DragAndDropComponent} from 'src/app/modules/ramdomize-modul/components/drag-and-drop/drag-and-drop.component';
-import {InputTableComponent} from './components/input-table/input-table.component';
+import {UserInputComponent} from './components/user-input/user-input.component';
 import {MatIconModule} from '@angular/material/icon';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {RandomizedNameDialogComponent} from './dialog-templates/randomized-name-dialog.component';
-import {OutputTableComponent} from './components/output-table/output-table.component';
+import {OutputListComponent} from './components/output-list/output-list.component';
 import {MatExpansionModule} from '@angular/material/expansion';
 import {ImportDialogTemplateComponent} from './dialog-templates/import-dialog-template.component';
 import {MatCardModule} from "@angular/material/card";
@@ -14,20 +13,21 @@ import {MatInputModule} from "@angular/material/input";
 import {MatFormFieldModule} from "@angular/material/form-field";
 import {MatDialogModule} from "@angular/material/dialog";
 import {MatButtonModule} from "@angular/material/button";
+import {RouterLink, RouterOutlet} from "@angular/router";
+import {MatTooltipModule} from "@angular/material/tooltip";
+import {RandomizeMainComponent} from "./components/randomize-main/randomize-main.component";
 
 
 @NgModule({
   declarations: [
-    RandomizeInputComponent,
     DragAndDropComponent,
-    InputTableComponent,
+    UserInputComponent,
     RandomizedNameDialogComponent,
-    OutputTableComponent,
+    OutputListComponent,
     ImportDialogTemplateComponent,
+    RandomizeMainComponent,
   ],
-  exports: [
-    RandomizeInputComponent
-  ],
+  exports: [],
   imports: [
     CommonModule,
     MatCardModule,
@@ -40,6 +40,9 @@ import {MatButtonModule} from "@angular/material/button";
     MatDialogModule,
     MatButtonModule,
     MatExpansionModule,
+    RouterLink,
+    RouterOutlet,
+    MatTooltipModule,
 
   ]
 })

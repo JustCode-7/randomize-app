@@ -20,6 +20,7 @@ import {MatButtonModule} from "@angular/material/button";
     AppComponent,
   ],
   imports: [
+    RamdomizeModulModule,
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
@@ -32,7 +33,6 @@ import {MatButtonModule} from "@angular/material/button";
     }),
     MatToolbarModule,
     MatMenuModule,
-    RamdomizeModulModule,
     TimerModulModule,
     MainModule,
     MatButtonModule,

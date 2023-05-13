@@ -1,30 +1,23 @@
-<div class="container mb-2">
-  <mat-accordion>
-    <mat-expansion-panel>
-      <mat-expansion-panel-header>
-        <mat-panel-description>
-          import text files
-        </mat-panel-description>
-      </mat-expansion-panel-header>
-      <div class="d-flex flex-column bd-highlight mb-3">
-        <mat-card class="m-1 justify-content-center no-warp flex-row">
-          <div class="d-flex justify-content-center">
-            <button mat-icon-button>
-              <mat-icon (click)="openExplorerForfileImport(file)">explore</mat-icon>
-            </button>
-            <mat-hint>click to open explorer</mat-hint>
-          </div>
-        </mat-card>
-        <mat-card style="background-color: orange">
-          <div class="d-flex justify-content-center">
-            <input #file [multiple]="false" style="display:none" type="file"/>
-            <mat-icon class="w-75">drag_indicator</mat-icon>
-            <mat-hint>drag and drop your text-files here</mat-hint>
-          </div>
+<mat-expansion-panel #panel class="w-100">
+  <mat-expansion-panel-header>
+    <button (click)="panel.closed? panel.open() : panel.close()" mat-icon-button routerLink="fileimport">
+      <mat-icon>input</mat-icon>
+    </button>
+  </mat-expansion-panel-header>
+  <div class="d-inline-flex flex-column align-content-center">
+    <mat-card [matTooltip]="'click to open explorer'" class="d-inline-flex m-1 justify-content-center">
 
-        </mat-card>
+      <button (click)="openExplorerForfileImport(file)" mat-icon-button>
+        <mat-icon>explore</mat-icon>
+      </button>
+    </mat-card>
+    <mat-card [matTooltip]="'drag and drop your text files here'" [ngStyle]="{'background-color': dragAndDropColor}"
+              class="d-inline-flex m-1 justify-content-center">
+      <input #file [multiple]="false" [ngStyle]="{'display':'none'}" type="file"/>
+      <button mat-icon-button>
+        <mat-icon class="fs-3">drag_indicator</mat-icon>
+      </button>
+    </mat-card>
+  </div>
+</mat-expansion-panel>
 
-      </div>
-    </mat-expansion-panel>
-  </mat-accordion>
-</div>
