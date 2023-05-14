@@ -1,5 +1,6 @@
 <div class="my-2 mx-2 vw-25">
-  <div *ngIf="progressSpinnerValue!==0" class="d-flex justify-content-center p-3 my-2 mx-2 vw-25">
+  <div *ngIf="progressSpinnerValue!==0 && Number.parseInt(remaining) <= 12"
+       class="d-flex justify-content-center p-3 my-2 mx-2 vw-25">
     <mat-card class="position-relative justify-content-center p-3">
       <mat-card-title>Feierabend:<br> {{feierabendDateString}}</mat-card-title>
       <mat-card-content>

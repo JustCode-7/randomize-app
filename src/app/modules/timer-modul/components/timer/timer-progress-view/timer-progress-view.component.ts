@@ -11,4 +11,5 @@ export class TimerProgressViewComponent {
   @Input() progressSpinnerColor: "primary" | "accent" | "warn" | undefined;
   @Input() progressSpinnerMode!: "determinate" | "indeterminate";
   @Input() remaining!: string;
+  protected readonly Number = Number;
 }

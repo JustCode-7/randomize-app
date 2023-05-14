@@ -244,10 +244,10 @@ export class TimerService {
   private async getRemainingTime() {
     let minutes = this.maxSpinnerValue - this.vergangen;
     this.remaining = this.getFormattedTimeString(0, minutes);
-    if (this.vergangen != 0 && this.vergangen % 30 == 0) {
+    if (this.vergangen != 0 && this.vergangen % 30 == 0 && Number.parseInt(this.remaining) <= 12) {
       await this.sendNotification(this.getDrinkMoveNotification());
     }
-    if (minutes == 0) {
+    if (minutes == 0 && Number.parseInt(this.remaining) <= 12) {
       await this.sendNotification(this.getTimeToLeaveNotification());
     }
   }
