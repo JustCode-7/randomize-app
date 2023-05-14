@@ -245,14 +245,18 @@ export class TimerService {
     let minutes = this.maxSpinnerValue - this.vergangen;
     this.remaining = this.getFormattedTimeString(0, minutes);
     if (this.vergangen != 0 && this.vergangen % 30 == 0) {
-      const notifDrink = this.getDrinkMoveNotification()
-      await Utility.delay(3000)
-      notifDrink.close();
+      await this.sendNotification(this.getDrinkMoveNotification());
     }
     if (minutes == 0) {
-      const notifiLeave = this.getTimeToLeaveNotification()
+      await this.sendNotification(this.getTimeToLeaveNotification());
+    }
+  }
+
+  private async sendNotification(notifi: Notification) {
+    if (Notification.permission === "granted") {
+      const notifDrink = notifi;
       await Utility.delay(3000)
-      notifiLeave.close();
+      notifDrink.close();
     }
   }
 }
