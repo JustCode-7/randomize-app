@@ -1,20 +1,8 @@
-import {
-  ChangeDetectionStrategy,
-  Component,
-  ElementRef,
-  EventEmitter,
-  Input,
-  Output,
-  Renderer2,
-  ViewChild
-} from "@angular/core"
+import {ChangeDetectionStrategy, Component, ElementRef, EventEmitter, Output, Renderer2, ViewChild} from "@angular/core"
 import {DomSanitizer, SafeUrl} from "@angular/platform-browser"
-// @ts-ignore
-// eslint-disable-next-line @typescript-eslint/ban-ts-comment
-import QRCode from 'qrcode'
-
-import {QRCodeConfigType, QRCodeElementType, QRCodeErrorCorrectionLevel, QRCodeVersion,} from "./types"
+import {QRCodeConfigType, QRCodeErrorCorrectionLevel, QRCodeVersion,} from "./types"
 import {QrcodeShareService} from "../../services/qrcode-share.service";
+import {BehaviorSubject} from "rxjs";
 
 @Component({
   selector: 'app-generate-qr-code',
@@ -22,51 +10,38 @@ import {QrcodeShareService} from "../../services/qrcode-share.service";
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class GenerateQrCodeComponent {
+  QRCode = require('qrcode')
   public value: string = "https://www.google.de/";
-  @Input() public allowEmptyString = true
-  @Input() public colorDark = "#000000ff"
-  @Input() public colorLight = "#ffffffff"
-  @Input() public cssClass = "qrcode"
-  @Input() public elementType: QRCodeElementType = "img"
-  @Input()
-  public errorCorrectionLevel: QRCodeErrorCorrectionLevel = "H"
-  @Input() public imageSrc?: string
-  @Input() public imageHeight?: number
-  @Input() public imageWidth?: number = 256
-  @Input() public margin = 7
-  @Input() public qrdata = ""
-  @Input() public scale = 4
-  @Input() public version?: QRCodeVersion
-  @Input() public width = 10
-  // Accessibility features introduced in 13.0.4+
-  @Input() public alt?: string
-  @Input() public ariaLabel?: string
-  @Input() public title?: string
+  public allowEmptyString = true
+  public hintColor = "#ec1616"
+  public colorForeground = "#000000ff"
+  public colorBackground = "#ffffffff"
+
+  public qrdata = "";
+  public qrCodeversion?: QRCodeVersion;
+  public qrCodeErrorCorrLevel: QRCodeErrorCorrectionLevel = "H";
   @Output() qrCodeURL = new EventEmitter<SafeUrl>()
   @ViewChild("qrcElement", {static: true}) public qrcElement!: ElementRef
-  public context: CanvasRenderingContext2D | null = null
   config: QRCodeConfigType = {
     color: {
-      dark: this.colorDark,
-      light: this.colorLight,
+      dark: this.colorForeground,
+      light: this.colorBackground,
     },
-    errorCorrectionLevel: this.errorCorrectionLevel,
-    margin: this.margin,
-    scale: this.scale,
-    type: this.elementType,
-    version: this.version,
-    width: this.width,
+    errorCorrectionLevel: this.qrCodeErrorCorrLevel,
+    margin: 7,
+    scale: 2,
+    type: "svg",
+    version: this.qrCodeversion,
+    width: 100,
   }
-  centerImageSrc = this.imageSrc
-  centerImageHeight = this.imageHeight || 40
-  centerImageWidth = this.imageWidth || 40
   latestScans: string[] = [];
-  private centerImage?: HTMLImageElement
+  public errorMsg = new BehaviorSubject<string>("");
+  private revalidationVersion: QRCodeVersion | undefined;
 
   constructor(private renderer: Renderer2, private sanitizer: DomSanitizer, public qrcodeService: QrcodeShareService) {
     this.value = "https://www.google.de/";
     this.latestScans = this.getListFromLocalStorage() ?? [];
-    this.generateQR();
+    this.initialGenerateQR();
   }
 
   isQRCodeDataValid() {
@@ -82,41 +57,24 @@ export class GenerateQrCodeComponent {
   }
 
   versionCheck() {
-    if (this.version && this.version > 40) {
+    if (this.qrCodeversion && this.qrCodeversion > 40) {
       console.warn(" max value for `version` is 40");
-      this.version = 40;
-    } else if (this.version && this.version < 1) {
+      this.qrCodeversion = 40;
+    }
+    if (this.qrCodeversion && this.qrCodeversion < 1) {
       console.warn("`min value for `version` is 1");
-      this.version = 1;
-    } else if (this.version !== undefined && isNaN(this.version)) {
+      this.qrCodeversion = 1;
+    }
+    if (this.qrCodeversion !== undefined && isNaN(this.qrCodeversion)) {
       console.warn(
         " version should be a number, defaulting to auto."
       );
-      this.version = undefined;
+      this.qrCodeversion = undefined;
     }
-  }
-
-  img() {
-    const imgElement: HTMLImageElement =
-      this.renderer.createElement("img")
-    this.toDataURL(this.config)
-      .then((dataUrl: string) => {
-        if (this.alt) {
-          imgElement.setAttribute("alt", this.alt)
-        }
-        if (this.ariaLabel) {
-          imgElement.setAttribute("aria-label", this.ariaLabel)
-        }
-        imgElement.setAttribute("src", dataUrl)
-        if (this.title) {
-          imgElement.setAttribute("title", this.title)
-        }
-        this.renderElement(imgElement)
-        this.emitQRCodeURL(imgElement)
-      })
-      .catch((e) => {
-        console.error("img/url error:", e)
-      })
+    if (this.revalidationVersion !== undefined && this.revalidationVersion > this.qrCodeversion!) {
+      this.qrCodeversion = this.revalidationVersion;
+    }
+    console.log(this.qrCodeversion)
   }
 
   emitQRCodeURL(element: HTMLCanvasElement | HTMLImageElement | SVGSVGElement) {
@@ -154,72 +112,10 @@ export class GenerateQrCodeComponent {
       })
   }
 
-  canvas() {
-    const canvasElement: HTMLCanvasElement =
-      this.renderer.createElement("canvas")
-    this.context = canvasElement.getContext("2d")
-    this.toCanvas(canvasElement, this.config)
-      .then(() => {
-        if (this.ariaLabel) {
-          this.renderer.setAttribute(
-            canvasElement,
-            "aria-label",
-            `${this.ariaLabel}`
-          )
-        }
-        if (this.title) {
-          this.renderer.setAttribute(
-            canvasElement,
-            "title",
-            `${this.title}`
-          )
-        }
-
-        if (this.centerImageSrc && this.context) {
-          this.centerImage = new Image(
-            this.centerImageWidth,
-            this.centerImageHeight
-          )
-
-          if (this.centerImageSrc !== this.centerImage.src) {
-            this.centerImage.src = this.centerImageSrc
-          }
-
-          if (this.centerImageHeight !== this.centerImage.height) {
-            this.centerImage.height = this.centerImageHeight
-          }
-
-          if (this.centerImageWidth !== this.centerImage.width) {
-            this.centerImage.width = this.centerImageWidth
-          }
-
-          const centerImage = this.centerImage
-
-          if (centerImage) {
-            centerImage.onload = () => {
-              this.context?.drawImage(
-                centerImage,
-                canvasElement.width / 2 - this.centerImageWidth / 2,
-                canvasElement.height / 2 - this.centerImageHeight / 2,
-                this.centerImageWidth,
-                this.centerImageHeight
-              )
-            }
-          }
-        }
-
-        this.renderElement(canvasElement)
-        this.emitQRCodeURL(canvasElement as HTMLCanvasElement)
-      })
-      .catch((e) => {
-        console.error(" canvas error:", e)
-      })
-
-  }
-
   svg() {
     const svgParentElement: HTMLElement =
       this.renderer.createElement("div")
+    svgParentElement.setAttribute("class", "vw-90 mt-9")
     this.toSVG(this.config)
       .then((svgString: string) => {
         this.renderer.setProperty(
@@ -228,22 +124,53 @@ export class GenerateQrCodeComponent {
           svgString
         )
         const svgElement = svgParentElement.firstChild as SVGSVGElement
-        this.renderer.setAttribute(svgElement, "height", `${this.width}`)
-        this.renderer.setAttribute(svgElement, "width", `${this.width}`)
+        this.renderer.setAttribute(svgElement, "height", '100%')
+        this.renderer.setAttribute(svgElement, "width", '100%')
         this.renderElement(svgElement)
         this.emitQRCodeURL(svgElement)
       })
       .catch((e) => {
-        console.error(" svg error:", e)
+        if (e.message.includes("The amount of data is too big")) {
+          if (this.qrCodeErrorCorrLevel === "L") {
+            this.errorMsg.next(e.message);
+            this.value = "sorry dude"
+            console.error(" svg error:", e)
+          }
+          if (this.qrCodeErrorCorrLevel === "M") {
+            this.qrCodeErrorCorrLevel = "L";
+            this.svg();
+          }
+          if (this.qrCodeErrorCorrLevel === "Q") {
+            this.qrCodeErrorCorrLevel = "M";
+            this.svg();
+          }
+          if (this.qrCodeErrorCorrLevel === "H") {
+            this.qrCodeErrorCorrLevel = "Q";
+            this.svg();
+          }
+        }
+        if (e.toString().includes("version")) {
+          console.error("qrCode-version-error: %s + try to revalidate version and reprint QR-Code", e)
+          this.revalidationVersion = e.message.substring(e.message.lastIndexOf(":") + 1, e.message.lastIndexOf("."))
+          this.qrCodeversion = this.revalidationVersion;
+          // dialog open : do want to revalidate the
+          this.svg();
+        }
+
       })
   }
 
-  async generateQR() {
+  async initialGenerateQR() {
+    this.setDefaults();
     this.qrdata = this.value;
-    await this.createQRCode()
+    if (this.value !== '') {
+      await this.createQRCode()
+    }
+
   }
 
   async generateQROnClick(value: string) {
+    this.setDefaults();
     if (this.latestScans.length > 5) {
       this.latestScans.shift();
       this.latestScans.push(value);
@@ -252,12 +179,14 @@ export class GenerateQrCodeComponent {
     }
     this.saveInLocalSorage(this.latestScans);
     this.qrdata = value;
-    await this.createQRCode()
+    if (value !== '') {
+      await this.createQRCode()
+    }
   }
 
   getItemOfLatestScans(value: string) {
     this.value = value;
-    this.generateQR()
+    this.initialGenerateQR()
   }
 
   saveInLocalSorage(items: string[]) {
@@ -286,50 +215,21 @@ export class GenerateQrCodeComponent {
     return !(typeof data === "undefined")
   }
 
-  private toDataURL(qrCodeConfig: QRCodeConfigType): Promise<any> {
-    return new Promise(
-      (resolve: (arg: any) => any, reject: (arg: any) => any) => {
-        QRCode.toDataURL(
-          this.qrdata,
-          qrCodeConfig,
-          (err: Error, url: string) => {
-            if (err) {
-              reject(err)
-            } else {
-              resolve(url)
-            }
-          }
-        )
-      }
-    )
-  }
-
-  private toCanvas(
-    canvas: Element,
-    qrCodeConfig: QRCodeConfigType
-  ): Promise<any> {
-    return new Promise(
-      (resolve: (arg: any) => any, reject: (arg: any) => any) => {
-        QRCode.toCanvas(canvas, this.qrdata, qrCodeConfig, (error: Error) => {
-          if (error) {
-            reject(error)
-          } else {
-            resolve("success")
-          }
-        })
-      }
-    )
+  private setDefaults() {
+    this.qrCodeErrorCorrLevel = 'H';
+    this.errorMsg.next('');
   }
 
   private toSVG(qrCodeConfig: QRCodeConfigType): Promise<any> {
     return new Promise(
       (resolve: (arg: any) => any, reject: (arg: any) => any) => {
-        QRCode.toString(
+        this.QRCode.toString(
           this.qrdata,
           qrCodeConfig,
           (err: Error, url: string) => {
             if (err) {
               reject(err)
+              return
             } else {
               resolve(url)
             }
@@ -347,23 +247,10 @@ export class GenerateQrCodeComponent {
   }
 
   private async createQRCode(): Promise<void> {
-    // Set sensitive defaults
     this.versionCheck();
-
     try {
-      this.isQRCodeDataValid();
-      switch (this.elementType) {
-        case "canvas":
-          this.canvas();
-          break;
-        case "svg":
-          this.svg();
-          break;
-        case "url":
-        case "img":
-        default:
-          this.img();
-      }
+      this.isQRCodeDataValid()
+      this.svg();
     } catch (e: any) {
       console.error("Error generating QR Code:", e.message)
     }
