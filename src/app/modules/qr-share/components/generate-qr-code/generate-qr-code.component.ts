@@ -171,6 +171,10 @@ export class GenerateQrCodeComponent {
 
   async generateQROnClick(value: string) {
     this.setDefaults();
+    if (value === '') {
+      this.errorMsg.next("no empty input allowed")
+      return;
+    }
     if (this.latestScans.length > 5) {
       this.latestScans.shift();
       this.latestScans.push(value);
@@ -179,9 +183,7 @@ export class GenerateQrCodeComponent {
     }
     this.saveInLocalSorage(this.latestScans);
     this.qrdata = value;
-    if (value !== '') {
-      await this.createQRCode()
-    }
+    await this.createQRCode()
   }
 
   getItemOfLatestScans(value: string) {
