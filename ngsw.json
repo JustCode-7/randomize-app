@@ -1,10 +1,10 @@
 {
   "configVersion": 1,
-  "timestamp": 1700356705380,
+  "timestamp": 1700357708891,
   "index": "/randomize-app/index.html",
   "assetGroups": [
     {
-      "name": "randomize-app",
+      "name": "app",
       "installMode": "prefetch",
       "updateMode": "prefetch",
       "cacheQueryOptions": {
@@ -13,7 +13,7 @@
       "urls": [
         "/randomize-app/920.6bda3facdb516174.js",
         "/randomize-app/index.html",
-        "/randomize-app/main.48fd2819cc568ef4.js",
+        "/randomize-app/main.d3852dfb8ffe2d5f.js",
         "/randomize-app/manifest.webmanifest",
         "/randomize-app/polyfills.d6c488e4ff16d44a.js",
         "/randomize-app/runtime.f0a499c7d5ad260e.js",
@@ -29,6 +29,14 @@
         "ignoreVary": true
       },
       "urls": [
+        "/randomize-app/assets/icons/icon-128x128.png",
+        "/randomize-app/assets/icons/icon-144x144.png",
+        "/randomize-app/assets/icons/icon-152x152.png",
+        "/randomize-app/assets/icons/icon-192x192.png",
+        "/randomize-app/assets/icons/icon-384x384.png",
+        "/randomize-app/assets/icons/icon-512x512.png",
+        "/randomize-app/assets/icons/icon-72x72.png",
+        "/randomize-app/assets/icons/icon-96x96.png",
         "/randomize-app/assets/icons/icons8-16.png",
         "/randomize-app/assets/icons/icons8-32.ico",
         "/randomize-app/assets/icons/icons8-32.png",
@@ -44,6 +52,14 @@
   "dataGroups": [],
   "hashTable": {
     "/randomize-app/920.6bda3facdb516174.js": "4bd82baec4cefa560fcbd6a4b7a7c9f21298a4ca",
+    "/randomize-app/assets/icons/icon-128x128.png": "dae3b6ed49bdaf4327b92531d4b5b4a5d30c7532",
+    "/randomize-app/assets/icons/icon-144x144.png": "b0bd89982e08f9bd2b642928f5391915b74799a7",
+    "/randomize-app/assets/icons/icon-152x152.png": "7479a9477815dfd9668d60f8b3b2fba709b91310",
+    "/randomize-app/assets/icons/icon-192x192.png": "1abd80d431a237a853ce38147d8c63752f10933b",
+    "/randomize-app/assets/icons/icon-384x384.png": "329749cd6393768d3131ed6304c136b1ca05f2fd",
+    "/randomize-app/assets/icons/icon-512x512.png": "559d9c4318b45a1f2b10596bbb4c960fe521dbcc",
+    "/randomize-app/assets/icons/icon-72x72.png": "c457e56089a36952cd67156f9996bc4ce54a5ed9",
+    "/randomize-app/assets/icons/icon-96x96.png": "3914125a4b445bf111c5627875fc190f560daa41",
     "/randomize-app/assets/icons/icons8-16.png": "0939bf0bdfc65f60bcf37239f21b549f132ef996",
     "/randomize-app/assets/icons/icons8-32.ico": "ec4d231840984ee454272dcf8e0c3468d8d9fc1c",
     "/randomize-app/assets/icons/icons8-32.png": "31b1387d840345f28c592c84985d93fe61c2d8c4",
@@ -52,9 +68,9 @@
     "/randomize-app/assets/icons/random.ico": "d01f52138b06bb612e9bb1d496cf60b55be03627",
     "/randomize-app/assets/icons/random.png": "babe945f01d621a0e7f3fcbed40e1edee98a5315",
     "/randomize-app/assets/icons/random.svg": "583affae8b9b478e64a05b803914b7cc918b2141",
-    "/randomize-app/index.html": "508eca97683b98129fe44345de23f0640175a9b7",
-    "/randomize-app/main.48fd2819cc568ef4.js": "1d57f3366a63a6a2349c5943bda42b68663dbfcb",
-    "/randomize-app/manifest.webmanifest": "572d7b43099e11093cd23ba1adbb57830eaf6734",
+    "/randomize-app/index.html": "abec1f6a92236bd5fa0d96a24edd543637a76d08",
+    "/randomize-app/main.d3852dfb8ffe2d5f.js": "95bae331f20d680440dbc3c78392641772608da2",
+    "/randomize-app/manifest.webmanifest": "168ed84177904fe30b405a8a716f6594d2926f22",
     "/randomize-app/polyfills.d6c488e4ff16d44a.js": "7d284d19d940ab390b5833282670f0dcfb2aa805",
     "/randomize-app/runtime.f0a499c7d5ad260e.js": "ce356d53c4ebeb63968eff9ba8ab8270e485f344",
     "/randomize-app/styles.19fe77eef146f534.css": "86b3aba2f5b67cc3ddc29542a88812465b6f73a7"
