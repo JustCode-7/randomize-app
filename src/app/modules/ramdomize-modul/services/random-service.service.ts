@@ -7,7 +7,8 @@ import {MatDialog, MatDialogConfig} from "@angular/material/dialog";
 })
 export class RandomServiceService {
 
-  _randomizedName: string = '';
+  _picks: number = 1
+  _randomizedNames: string [] = [];
   _names: string[] = ["Jack", "Jill", "Jane"];
   jsonKey = "names";
   dialogConfig = new MatDialogConfig();
@@ -61,11 +62,22 @@ export class RandomServiceService {
   }
 
   randomize() {
-    if (this._names.length > 0) {
-      var shuffle = Math.floor(Math.random() * (this._names.length));
-      this._randomizedName = this._names[shuffle];
+    if (this._picks > 0 && this._names.length >= this._picks) {
+      this._randomizedNames = [];
+      this.getrandomizedNames(this._randomizedNames);
       this.dialog.open(RandomizedNameDialogComponent, this.dialogConfig);
+    }
+  }
+
+  getrandomizedNames(names: string[]): any {
+    if (this._picks == 0) {
+      return names;
+    } else {
+      let shuffle = Math.floor(Math.random() * (this._names.length));
+      names.push(this._names[shuffle]);
       this.removeName(this._names[shuffle]);
+      this._picks -= 1;
+      return this.getrandomizedNames(names);
     }
   }
 
@@ -79,8 +91,14 @@ export class RandomServiceService {
     if (style == "wild") {
       this._style = "wild";
     }
+  }
 
-
+  getListLengthAsValues() {
+    let valueList = [];
+    for (let i = 0; i < this._names.length; i++) {
+      valueList.push(i + 1);
+    }
+    return valueList;
   }
 
   private localStorageGetItemByKey() {
