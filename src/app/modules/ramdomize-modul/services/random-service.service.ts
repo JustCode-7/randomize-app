@@ -62,22 +62,22 @@ export class RandomServiceService {
   }
 
   randomize() {
+    console.log(this._names.length);
+    console.log(this._picks);
     if (this._picks > 0 && this._names.length >= this._picks) {
+      let shuffleRounds = this._picks;
       this._randomizedNames = [];
-      this.getrandomizedNames(this._randomizedNames);
+      this.getrandomizedNames(this._randomizedNames, shuffleRounds);
       this.dialog.open(RandomizedNameDialogComponent, this.dialogConfig);
     }
   }
 
-  getrandomizedNames(names: string[]): any {
-    if (this._picks == 0) {
-      return names;
-    } else {
+  getrandomizedNames(names: string[], shuffleRounds: number): any {
+    if (shuffleRounds >= 1) {
       let shuffle = Math.floor(Math.random() * (this._names.length));
       names.push(this._names[shuffle]);
-      this.removeName(this._names[shuffle]);
-      this._picks -= 1;
-      return this.getrandomizedNames(names);
+      shuffleRounds -= 1;
+      return this.getrandomizedNames(names, shuffleRounds);
     }
   }
 
