@@ -18,7 +18,7 @@ jobs:
       - run: npm run build:ci -- --base-href /randomize-app/ --deploy-url /randomize-app/
 
       - name: Add a 404 workaround # https://angular.io/guide/deployment#server-configuration
-        working-directory: dist/randomize-app
+        working-directory: dist/randomize-app/browser
         run: cp index.html 404.html
 
       - name: Deploy to GitHub Pages
@@ -26,5 +26,5 @@ jobs:
         uses: JamesIves/github-pages-deploy-action@v4.3.2
         with:
           branch: gh-pages # The branch the action should deploy to.
-          folder: dist/randomize-app # The folder the action should deploy.
+          folder: dist/randomize-app/browser # The folder the action should deploy.
           clean: true # Automatically remove files from the target branch
