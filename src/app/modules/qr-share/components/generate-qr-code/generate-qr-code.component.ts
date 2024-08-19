@@ -3,6 +3,7 @@ import {DomSanitizer, SafeUrl} from "@angular/platform-browser"
 import {QRCodeConfigType, QRCodeErrorCorrectionLevel, QRCodeVersion,} from "./types"
 import {QrcodeShareService} from "../../services/qrcode-share.service";
 import {BehaviorSubject} from "rxjs";
+import QRCode, {QRCodeToStringOptions} from 'qrcode'
 
 @Component({
   selector: 'app-generate-qr-code',
@@ -10,7 +11,7 @@ import {BehaviorSubject} from "rxjs";
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class GenerateQrCodeComponent {
-  QRCode = require('qrcode')
+  QRCode = QRCode;
   public value: string = "https://www.google.de/";
   public allowEmptyString = true
   public hintColor = "#ec1616"
@@ -225,10 +226,11 @@ export class GenerateQrCodeComponent {
   private toSVG(qrCodeConfig: QRCodeConfigType): Promise<any> {
     return new Promise(
       (resolve: (arg: any) => any, reject: (arg: any) => any) => {
+
         this.QRCode.toString(
           this.qrdata,
-          qrCodeConfig,
-          (err: Error, url: string) => {
+          qrCodeConfig as QRCodeToStringOptions,
+          (err: Error | null | undefined, url: string) => {
             if (err) {
               reject(err)
               return
@@ -237,6 +239,7 @@ export class GenerateQrCodeComponent {
             }
           }
         )
+
       }
     )
   }
