@@ -78,10 +78,10 @@
           "builder": "@angular-devkit/build-angular:dev-server",
           "configurations": {
             "production": {
-              "browserTarget": "randomize-app:build:production"
+              "buildTarget": "randomize-app:build:production"
             },
             "development": {
-              "browserTarget": "randomize-app:build:development"
+              "buildTarget": "randomize-app:build:development"
             }
           },
           "defaultConfiguration": "development"
@@ -89,7 +89,7 @@
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "randomize-app:build"
+            "buildTarget": "randomize-app:build"
           }
         },
         "test": {
