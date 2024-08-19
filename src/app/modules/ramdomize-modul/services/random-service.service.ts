@@ -62,8 +62,6 @@ export class RandomServiceService {
   }
 
   randomize() {
-    console.log(this._names.length);
-    console.log(this._picks);
     if (this._picks > 0 && this._names.length >= this._picks) {
       let shuffleRounds = this._picks;
       this._randomizedNames = [];

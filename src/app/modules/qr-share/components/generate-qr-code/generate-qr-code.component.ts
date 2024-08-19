@@ -75,7 +75,6 @@ export class GenerateQrCodeComponent {
     if (this.revalidationVersion !== undefined && this.revalidationVersion > this.qrCodeversion!) {
       this.qrCodeversion = this.revalidationVersion;
     }
-    console.log(this.qrCodeversion)
   }
 
   emitQRCodeURL(element: HTMLCanvasElement | HTMLImageElement | SVGSVGElement) {
