@@ -8,7 +8,7 @@ import {NgForOf} from "@angular/common";
   standalone: true,
   template: `
     <h3 mat-dialog-title>randomized:</h3>
-    <div mat-dialog-content *ngFor="let item of randomizedService._randomizedNames">
+    <div mat-dialog-content *ngFor="let item of randomizedService._randomizedNames.sort()">
       <h1 style="color:yellow;"> {{ item }}</h1>
     </div>
   `,

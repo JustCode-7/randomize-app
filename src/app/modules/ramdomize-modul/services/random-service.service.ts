@@ -75,8 +75,11 @@ export class RandomServiceService {
   getrandomizedNames(names: string[], shuffleRounds: number): any {
     if (shuffleRounds >= 1) {
       let shuffle = Math.floor(Math.random() * (this._names.length));
-      names.push(this._names[shuffle]);
-      shuffleRounds -= 1;
+      const randomName = this._names[shuffle];
+      if (!names.includes(randomName)) {
+        names.push(randomName);
+        shuffleRounds -= 1;
+      }
       return this.getrandomizedNames(names, shuffleRounds);
     }
   }
