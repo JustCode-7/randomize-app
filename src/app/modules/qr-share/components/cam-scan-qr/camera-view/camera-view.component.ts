@@ -1,11 +1,17 @@
 import {Component, OnDestroy, OnInit} from '@angular/core';
 import QrScanner from "qr-scanner";
 import {QrcodeShareService} from "../../../services/qrcode-share.service";
-import {MatDialogRef} from "@angular/material/dialog";
+import {MatDialogModule, MatDialogRef} from "@angular/material/dialog";
+import {MatButtonModule} from "@angular/material/button";
 
 @Component({
   selector: 'app-camera-view',
   templateUrl: './camera-view.component.html',
+  standalone: true,
+  imports: [
+    MatDialogModule,
+    MatButtonModule
+  ]
 })
 export class CameraViewComponent implements OnInit, OnDestroy {
   localVideo: HTMLVideoElement = document.querySelector('#myVidPlayer')!;

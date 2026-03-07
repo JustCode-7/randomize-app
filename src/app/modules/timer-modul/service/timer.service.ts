@@ -1,48 +1,43 @@
-import {Injectable} from '@angular/core';
+import {inject, Injectable} from '@angular/core';
 import {FormBuilder, UntypedFormGroup, Validators} from "@angular/forms";
 import {formatDate} from "@angular/common";
 import {Utility} from "../../shared/utility/utility";
-import {ThemePalette} from "@angular/material/core";
-import {ProgressSpinnerMode} from "@angular/material/progress-spinner";
-import {MatDialog} from "@angular/material/dialog";
 import {PauseListComponent} from "../components/dialog/pause-list/pause-list.component";
+import {ProgressSpinnerMode} from '@angular/material/progress-spinner';
+import {MatDialog} from "@angular/material/dialog";
 
 @Injectable({
   providedIn: 'root'
 })
 export class TimerService {
   forms?: string[];
-
   extraPause = false;
-  progressSpinnerColor: ThemePalette = 'primary';
+  progressSpinnerColor: "primary" | "accent" | "warn" | undefined = 'primary';
   progressSpinnerMode: ProgressSpinnerMode = 'determinate';
   progressSpinnerValue = 0;
-
   remaining = '';
-
   playIconSymbol: string = 'play_circle_filled';
   pauseActiveForSeconds!: any;
   pausehinweis: any;
-
-
   pausenzeit: string = "pausenzeit";
   startTime: Date | undefined;
   endTime: Date | undefined;
-
   feierabendDateString: string = "feierabend";
   timeForm!: UntypedFormGroup;
   maxSpinnerValue = 0;
   timetoWorkDateString = "";
-  timerIdOneMinute = 1;
-  timerIdOneSecond!: NodeJS.Timeout;
+  timerIdOneMinute: any = 1;
+  timerIdOneSecond!: any;
   startTimeArr: string[] = [];
   workTimeArr: string[] = [];
   pauseArr: string[] = [];
   vergangen = 0;
   pauseActive: boolean = false;
   pauseList: string[] = [];
+  private fb = inject(FormBuilder);
+  private dialog = inject(MatDialog);
 
-  constructor(private fb: FormBuilder, private dialog: MatDialog) {
+  constructor() {
   }
 
   public calculateTotal() {

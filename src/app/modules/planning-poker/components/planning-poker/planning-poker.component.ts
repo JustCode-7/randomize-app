@@ -1,10 +1,19 @@
 import {Component, ElementRef, OnInit, ViewChild} from '@angular/core';
 import {PlanningPokerService} from "../../service/planning-poker.service";
+import {NgForOf} from "@angular/common";
+import {MatCardModule} from "@angular/material/card";
+import {MatProgressBarModule} from "@angular/material/progress-bar";
 
 @Component({
   selector: 'app-planning-poker',
   templateUrl: './planning-poker.component.html',
-  styleUrls: ['./planning-poker.component.scss']
+  styleUrls: ['./planning-poker.component.scss'],
+  standalone: true,
+  imports: [
+    NgForOf,
+    MatCardModule,
+    MatProgressBarModule
+  ]
 })
 export class PlanningPokerComponent implements OnInit {
   cardArr: any[] = [];
@@ -45,7 +54,7 @@ export class PlanningPokerComponent implements OnInit {
       this.style_card = this.style_color2;
     }
     //TODO: use ElementRef to change a single card
-    
+
     // let i = cardIndex;
     // this.cardArr.forEach((card, index) => {
     //   this.myCard = card;

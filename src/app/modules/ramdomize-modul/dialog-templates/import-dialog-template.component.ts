@@ -1,5 +1,7 @@
 import {Component} from '@angular/core';
 import {RandomServiceService} from '../services/random-service.service';
+import {MatDialogModule} from "@angular/material/dialog";
+import {MatButtonModule} from "@angular/material/button";
 
 @Component({
   selector: 'app-import-dialog',
@@ -12,6 +14,11 @@ import {RandomServiceService} from '../services/random-service.service';
       <button mat-button mat-dialog-close="" (click)="this.randomService.setImportStyle(wild)">I don't know</button>
     </mat-dialog-actions>
   `,
+  standalone: true,
+  imports: [
+    MatDialogModule,
+    MatButtonModule
+  ],
   styles: []
 })
 export class ImportDialogTemplateComponent {
@@ -20,7 +27,7 @@ export class ImportDialogTemplateComponent {
   wild: any = "wild";
 
   constructor(public randomService:
-                RandomServiceService
+              RandomServiceService
   ) {
   }
 }

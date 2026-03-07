@@ -4,10 +4,31 @@ import {QRCodeConfigType, QRCodeErrorCorrectionLevel, QRCodeVersion,} from "./ty
 import {QrcodeShareService} from "../../services/qrcode-share.service";
 import {BehaviorSubject} from "rxjs";
 import QRCode, {QRCodeToStringOptions} from 'qrcode'
+import {MatFormFieldModule} from "@angular/material/form-field";
+import {MatInputModule} from "@angular/material/input";
+import {FormsModule} from "@angular/forms";
+import {NgForOf, NgIf, NgStyle} from "@angular/common";
+import {MatButtonModule} from "@angular/material/button";
+import {MatListModule} from "@angular/material/list";
+import {MatDividerModule} from "@angular/material/divider";
+import {MatIconModule} from "@angular/material/icon";
 
 @Component({
   selector: 'app-generate-qr-code',
   templateUrl: 'generate-qr-code.component.html',
+  standalone: true,
+  imports: [
+    MatFormFieldModule,
+    MatInputModule,
+    FormsModule,
+    NgIf,
+    NgStyle,
+    MatButtonModule,
+    MatListModule,
+    NgForOf,
+    MatDividerModule,
+    MatIconModule
+  ],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class GenerateQrCodeComponent {

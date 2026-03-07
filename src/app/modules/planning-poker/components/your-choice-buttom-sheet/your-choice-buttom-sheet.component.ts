@@ -4,6 +4,7 @@ import {PlanningPokerService} from "../../service/planning-poker.service";
 @Component({
   selector: 'app-your-choice-buttom-sheet',
   templateUrl: './your-choice-buttom-sheet.component.html',
+  standalone: true
 })
 export class YourChoiceButtomSheetComponent {
 
